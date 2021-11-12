@@ -1,5 +1,5 @@
 batch_size: 16
-charset: "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&'\"()*+,-./:;<=>?@[\]^_`{|}~ "
+charset: "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&'\"()*+,-./:;<=>?@[]^_`{|}~\\ "
 target_path: 'run/checkpoint_weights_iam.hdf5'
 source: "raw_data/IAM"
 train_test_split: [2000, 915]
