@@ -54,7 +54,7 @@ def epoch_time(start_time, end_time):
 
 
 def main():
-    for epoch in range(num_epochs):
+    for epoch in tqdm(range(num_epochs)):
         print(f'Epoch: {epoch + 1:02}', 'learning rate{}'.format(scheduler.get_last_lr()))
 
         start_time = time.time()
