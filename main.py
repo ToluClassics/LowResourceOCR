@@ -42,9 +42,6 @@ criterion.to(device)
 lr = config['lr']  # learning rate
 optimizer = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=.0004)
 scheduler = torch.optim.lr_scheduler.StepLR(optimizer, 1, gamma=0.95)
-best_valid_loss = np.inf
-c = 0
-
 
 def epoch_time(start_time, end_time):
     elapsed_time = end_time - start_time
@@ -54,6 +51,8 @@ def epoch_time(start_time, end_time):
 
 
 def main():
+    best_valid_loss = np.inf
+    c = 0
     for epoch in tqdm(range(num_epochs)):
         print(f'Epoch: {epoch + 1:02}', 'learning rate{}'.format(scheduler.get_last_lr()))
 
