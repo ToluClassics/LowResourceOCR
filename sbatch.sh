@@ -5,7 +5,7 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --mem=120GB
 #SBATCH --time=24:00:00
-#SBATCH --account=odunayo
+#SBATCH --account=def-kshook
 #SBATCH --cpus-per-task=16
 
 #SBATCH -o ./output.log
