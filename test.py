@@ -10,16 +10,16 @@ import src.data.preprocess as pp
 
 device = "cuda:0" if torch.cuda.is_available() == True else "cpu"
 
-model = make_model(vocab_len=100)
-model.to(device)
-
-model.load_state_dict(torch.load('/content/Transformer_ocr/src/resnet_best.pt'))
-
 with open('config.yaml', 'r') as f:
     config = yaml.safe_load(f)
 
 charset = config['charset']
 tokenizer = Tokenizer(charset)
+
+model = make_model(vocab_len=tokenizer.vocab_size)
+model.to(device)
+
+model.load_state_dict(torch.load('run/checkpoint_weights_iam.pt', map_location=device))
 
 transform = T.Compose([T.ToTensor()])
 
@@ -42,12 +42,12 @@ def test(model, test_loader, max_text_length):
     with torch.no_grad():
         for batch in test_loader:
             src, trg = batch
-            imgs.append(src.flatten(0,1))
-            src, trg = src.cuda(), trg.cuda()
-            memory = get_memory(model,src.float())
+            imgs.append(src.flatten(0, 1))
+            src, trg = src.to(device), trg.to(device)
+            memory = get_memory(model, src.float())
             out_indexes = [tokenizer.chars.index('SOS'), ]
             for i in range(max_text_length):
-                mask = model.generate_square_subsequent_mask(i+1).to('cuda')
+                mask = model.generate_square_subsequent_mask(i+1).to(device)
                 trg_tensor = torch.LongTensor(out_indexes).unsqueeze(1).to(device)
                 output = model.vocab(model.transformer.decoder(model.query_pos(model.decoder(trg_tensor)), memory, tgt_mask=mask))
                 out_token = output.argmax(2)[-1].item()
@@ -62,21 +62,27 @@ def test(model, test_loader, max_text_length):
 dataset = DataGenerator(source=config['source'], charset=charset, transform=transform)
 test_loader = torch.utils.data.DataLoader(dataset, batch_size=1, shuffle=False, num_workers=2)
 
-max_text_length = dataset.max_len
-predicts, gt, imgs = test(model, test_loader, max_text_length)
+max_text_length = 128 #dataset.max_len
 
-predicts = list(map(lambda x : x.replace('SOS', '').replace('EOS', ''), predicts))
-gt = list(map(lambda x : x.replace('SOS', '').replace('EOS', ''), gt))
 
-evaluate = ocr_metrics(predicts=predicts, ground_truth=gt, )
+if __name__ == "__main__":
+    torch.multiprocessing.freeze_support()
+    predicts, gt, imgs = test(model, test_loader, max_text_length)
 
-print("Calculate Character Error Rate {}, Word Error Rate {} and Sequence Error Rate {}".format(evaluate[0], evaluate[1], evaluate[2]))
+    predicts = list(map(lambda x: x.replace('SOS', '').replace('EOS', ''), predicts))
+    gt = list(map(lambda x: x.replace('SOS', '').replace('EOS', ''), gt))
 
-for i, item in enumerate(imgs[:10]):
-    print("=" * 1024, "\n")
-    img = item.permute(1, 2, 0).cpu().numpy().astype(np.uint8)
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    evaluate = ocr_metrics(predicts=predicts, ground_truth=gt, )
 
-    cv2_imshow(pp.adjust_to_see(img))
-    print("Ground truth:", gt[i])
-    print("Prediction :", predicts[i], "\n")
+    print("Calculate Character Error Rate {}, Word Error Rate {} and Sequence Error Rate {}".format(evaluate[0],
+                                                                                                    evaluate[1],
+                                                                                                    evaluate[2]))
+    for i, item in enumerate(imgs[:10]):
+        print("=" * 1024, "\n")
+        img = item.permute(1, 2, 0).cpu().numpy().astype(np.uint8)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+        cv2.imshow(pp.adjust_to_see(img))
+        cv2.waitKey(0)
+        print("Ground truth:", gt[i])
+        print("Prediction :", predicts[i], "\n")

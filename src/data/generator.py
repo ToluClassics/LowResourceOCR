@@ -37,14 +37,14 @@ class DataGenerator(Dataset):
         self.gt = {k[0]: ' '.join(k[1:]) for k in text}
 
         self.max_len = max([len(item) for item in list(self.gt.values())])
-        self.tokenizer = Tokenizer(charset, self.max_len)
+        self.tokenizer = Tokenizer(charset, 128)
 
         self.size = len(self.images)
 
     def __getitem__(self, i):
         img = self.images[i]
         img = os.path.join(self.source, img)
-        print(self.gt[self.images[i]])
+        #print(self.gt[self.images[i]])
 
         img = pp.preprocess(img, (1024, 128, 1))
         # making image compatible with resnet
