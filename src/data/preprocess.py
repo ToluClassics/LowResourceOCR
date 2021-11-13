@@ -135,6 +135,9 @@ def preprocess(img, input_size):
     target[0:new_size[1], 0:new_size[0]] = img
     img = cv2.transpose(target)
 
+    '''cv2.imshow('image', img)
+    cv2.waitKey(0)'''
+
     return img
 
 

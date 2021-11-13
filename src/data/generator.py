@@ -6,6 +6,7 @@ Image renderings and text are created on the fly each time.
 from itertools import groupby
 from torch.utils.data import Dataset
 import torch
+import cv2
 
 import src.data.preprocess as pp
 #import preprocess as pp
@@ -20,8 +21,7 @@ from numpy import asarray
 class DataGenerator(Dataset):
     """Generator class with data streaming"""
 
-    def __init__(self, source, charset, max_text_length, transform):
-        self.tokenizer = Tokenizer(charset, max_text_length)
+    def __init__(self, source, charset, transform):
         self.transform = transform
 
         self.source = os.path.join(source, 'image')
@@ -36,11 +36,16 @@ class DataGenerator(Dataset):
         text = [item.split() for item in text if len(item.strip()) > 1 ]
         self.gt = {k[0]: ' '.join(k[1:]) for k in text}
 
+        self.max_len = max([len(item) for item in list(self.gt.values())])
+        self.tokenizer = Tokenizer(charset, self.max_len)
+
         self.size = len(self.images)
 
     def __getitem__(self, i):
         img = self.images[i]
         img = os.path.join(self.source, img)
+        print(self.gt[self.images[i]])
+
         img = pp.preprocess(img, (1024, 128, 1))
         # making image compatible with resnet
         img = np.repeat(img[..., np.newaxis], 3, -1)
@@ -114,8 +119,9 @@ if __name__ == "__main__":
     transform = T.Compose([
         T.ToTensor()])
     dg = DataGenerator("raw_data/IAM", charset, max_text_length, transform)
-    train_loader = torch.utils.data.DataLoader(dg, batch_size=16, shuffle=False, num_workers=2)
-    for a ,b in train_loader:
+    dg[1000]
+    '''train_loader = torch.utils.data.DataLoader(dg, batch_size=16, shuffle=False, num_workers=2)
+    for a, b in train_loader:
         print(a.shape)
         print(b.shape)
-        break
+        break'''
