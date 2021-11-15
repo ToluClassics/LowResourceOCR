@@ -1,9 +1,6 @@
 from torch import nn
 import torch
 from torch.autograd import Variable
-import numpy as np
-import time
-from tqdm import tqdm
 
 device = "cuda:0" if torch.cuda.is_available() == True else "cpu"
 
@@ -36,7 +33,7 @@ class LabelSmoothing(nn.Module):
 def train(model, criterion, optimiser, scheduler, dataloader, tokenizer):
     model.train()
     total_loss = 0
-    for batch, (imgs, labels_y,) in tqdm(enumerate(dataloader)):
+    for batch, (imgs, labels_y,) in enumerate(dataloader):
         imgs = imgs.to(device)
         labels_y = labels_y.to(device)
 

@@ -26,7 +26,7 @@ transform = T.Compose([T.ToTensor()])
 
 target_path = config['target_path']
 
-dataset = DataGenerator(source=config['source'], charset=charset, max_text_length=128, transform=transform)
+dataset = DataGenerator(source=config['source'], charset=charset, transform=transform)
 train_dataset, val_dataset = random_split(dataset, config['train_test_split'])
 
 train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=batch_size, shuffle=False, num_workers=2)
