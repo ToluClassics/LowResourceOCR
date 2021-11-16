@@ -106,7 +106,7 @@ if __name__ == "__main__":
         img = item.permute(1, 2, 0).cpu().numpy().astype(np.uint8)
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-        #cv2.imshow("image", pp.adjust_to_see(img))
-        #cv2.waitKey(0)
+        # cv2.imshow("image", pp.adjust_to_see(img))
+        # cv2.waitKey(0)
         print("Ground truth:", gt[i])
         print("Prediction :", predicts[i], "\n")

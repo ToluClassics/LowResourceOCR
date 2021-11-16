@@ -10,7 +10,8 @@ import cv2
 import random
 
 import src.data.preprocess as pp
-#import preprocess as pp
+
+# import preprocess as pp
 import os
 import numpy as np
 import unicodedata
@@ -25,18 +26,20 @@ class DataGenerator(Dataset):
     def __init__(self, source, charset, transform):
         self.transform = transform
 
-        self.source = os.path.join(source, 'image')
+        self.source = os.path.join(source, "image")
         self.images = os.listdir(self.source)
-        self.images = [image for image in self.images if image.endswith('.jpg')]
+        self.images = [image for image in self.images if image.endswith(".jpg")]
         random.shuffle(self.images)
 
-        self.image_dataset = [asarray(Image.open(os.path.join(self.source, img))) for img in self.images]
+        self.image_dataset = [
+            asarray(Image.open(os.path.join(self.source, img))) for img in self.images
+        ]
 
-        with open(os.path.join(source, 'gt_test.txt'), "r") as f:
+        with open(os.path.join(source, "target.txt"), "r") as f:
             text = f.read()
-        text = text.split('\n')
-        text = [item.split() for item in text if len(item.strip()) > 1 ]
-        self.gt = {k[0]: ' '.join(k[1:]) for k in text}
+        text = text.split("\n")
+        text = [item.split() for item in text if len(item.strip()) > 1]
+        self.gt = {k[0]: " ".join(k[1:]) for k in text}
 
         self.max_len = max([len(item) for item in list(self.gt.values())])
         self.tokenizer = Tokenizer(charset, 128)
@@ -48,6 +51,8 @@ class DataGenerator(Dataset):
         img = os.path.join(self.source, img)
 
         img = pp.preprocess(img, (1024, 128, 1))
+        cv2.imshow("image", img)
+        cv2.waitKey(0)
         # making image compatible with resnet
         img = np.repeat(img[..., np.newaxis], 3, -1)
         img = pp.normalization(img)
@@ -55,6 +60,7 @@ class DataGenerator(Dataset):
         if self.transform is not None:
             img = self.transform(img)
 
+        print(self.gt[self.images[i]])
         self.gt[self.images[i]] = pp.text_standardize(self.gt[self.images[i]])
         y_train = self.tokenizer.encode(self.gt[self.images[i]])
 
@@ -69,12 +75,14 @@ class DataGenerator(Dataset):
         return self.size
 
 
-class Tokenizer():
+class Tokenizer:
     """Manager tokens functions and charset/dictionary properties"""
 
     def __init__(self, chars, max_text_length=128):
         self.PAD_TK, self.UNK_TK, self.SOS, self.EOS = "¶", "¤", "SOS", "EOS"
-        self.chars = [self.PAD_TK] + [self.UNK_TK] + [self.SOS] + [self.EOS] + list(chars)
+        self.chars = (
+            [self.PAD_TK] + [self.UNK_TK] + [self.SOS] + [self.EOS] + list(chars)
+        )
         self.PAD = self.chars.index(self.PAD_TK)
         self.UNK = self.chars.index(self.UNK_TK)
 
@@ -84,14 +92,18 @@ class Tokenizer():
     def encode(self, text):
         """Encode text to vector"""
 
-        text = unicodedata.normalize("NFKD", text).encode("ASCII", "ignore").decode("ASCII")
+        text = (
+            unicodedata.normalize("NFKD", text)
+            .encode("ASCII", "ignore")
+            .decode("ASCII")
+        )
         text = " ".join(text.split())
 
         groups = ["".join(group) for _, group in groupby(text)]
         text = "".join([self.UNK_TK.join(list(x)) if len(x) > 1 else x for x in groups])
         encoded = []
 
-        text = ['SOS'] + list(text) + ['EOS']
+        text = ["SOS"] + list(text) + ["EOS"]
         for item in text:
             index = self.chars.index(item)
             index = self.UNK if index == -1 else index
@@ -118,12 +130,11 @@ if __name__ == "__main__":
     charset = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVW\"XYZ!#$%&'()*+,-./:;<=>?@[\]^_`{|}~ "
     max_text_length = 100
     split = "train"
-    transform = T.Compose([
-        T.ToTensor()])
-    dg = DataGenerator("raw_data/IAM", charset, transform)
+    transform = T.Compose([T.ToTensor()])
+    dg = DataGenerator("raw_data/trdg", charset, transform)
     dg[1000]
-    '''train_loader = torch.utils.data.DataLoader(dg, batch_size=16, shuffle=False, num_workers=2)
+    """train_loader = torch.utils.data.DataLoader(dg, batch_size=16, shuffle=False, num_workers=2)
     for a, b in train_loader:
         print(a.shape)
         print(b.shape)
-        break'''
+        break"""

@@ -9,7 +9,9 @@ import editdistance
 import numpy as np
 
 
-def ocr_metrics(predicts, ground_truth, norm_accentuation=False, norm_punctuation=False):
+def ocr_metrics(
+    predicts, ground_truth, norm_accentuation=False, norm_punctuation=False
+):
     """Calculate Character Error Rate (CER), Word Error Rate (WER) and Sequence Error Rate (SER)"""
 
     if len(predicts) == 0 or len(ground_truth) == 0:
@@ -21,8 +23,16 @@ def ocr_metrics(predicts, ground_truth, norm_accentuation=False, norm_punctuatio
         pd, gt = pd.lower(), gt.lower()
 
         if norm_accentuation:
-            pd = unicodedata.normalize("NFKD", pd).encode("ASCII", "ignore").decode("ASCII")
-            gt = unicodedata.normalize("NFKD", gt).encode("ASCII", "ignore").decode("ASCII")
+            pd = (
+                unicodedata.normalize("NFKD", pd)
+                .encode("ASCII", "ignore")
+                .decode("ASCII")
+            )
+            gt = (
+                unicodedata.normalize("NFKD", gt)
+                .encode("ASCII", "ignore")
+                .decode("ASCII")
+            )
 
         if norm_punctuation:
             pd = pd.translate(str.maketrans("", "", string.punctuation))
