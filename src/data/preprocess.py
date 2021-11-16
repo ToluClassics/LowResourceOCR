@@ -42,13 +42,15 @@ def adjust_to_see(img):
     return img
 
 
-def augmentation(imgs,
-                 rotation_range=0,
-                 scale_range=0,
-                 height_shift_range=0,
-                 width_shift_range=0,
-                 dilate_range=1,
-                 erode_range=1):
+def augmentation(
+    imgs,
+    rotation_range=0,
+    scale_range=0,
+    height_shift_range=0,
+    width_shift_range=0,
+    dilate_range=1,
+    erode_range=1,
+):
     """Apply variations to a list of images (rotate, width and height shift, scale, erode, dilate)"""
 
     imgs = imgs.astype(np.float32)
@@ -69,7 +71,9 @@ def augmentation(imgs,
     affine_mat = rot_map_aff.dot(trans_map_aff)[:2, :]
 
     for i in range(len(imgs)):
-        imgs[i] = cv2.warpAffine(imgs[i], affine_mat, (w, h), flags=cv2.INTER_NEAREST, borderValue=255)
+        imgs[i] = cv2.warpAffine(
+            imgs[i], affine_mat, (w, h), flags=cv2.INTER_NEAREST, borderValue=255
+        )
         imgs[i] = cv2.erode(imgs[i], erode_kernel, iterations=1)
         imgs[i] = cv2.dilate(imgs[i], dilate_kernel, iterations=1)
 
@@ -120,7 +124,9 @@ def preprocess(img, input_size):
                 total = len(img) if i < 2 else len(img[0])
                 boundbox[i] = int(total * boundbox[i])
 
-        img = np.asarray(img[boundbox[0]:boundbox[1], boundbox[2]:boundbox[3]], dtype=np.uint8)
+        img = np.asarray(
+            img[boundbox[0] : boundbox[1], boundbox[2] : boundbox[3]], dtype=np.uint8
+        )
 
     wt, ht, _ = input_size
     h, w = np.asarray(img).shape
@@ -132,11 +138,11 @@ def preprocess(img, input_size):
     img = cv2.resize(img, new_size)
 
     target = np.ones([ht, wt], dtype=np.uint8) * 255
-    target[0:new_size[1], 0:new_size[0]] = img
+    target[0 : new_size[1], 0 : new_size[0]] = img
     img = cv2.transpose(target)
 
-    '''cv2.imshow('image', img)
-    cv2.waitKey(0)'''
+    """cv2.imshow('image', img)
+    cv2.waitKey(0)"""
 
     return img
 
@@ -177,7 +183,7 @@ def illumination_compensation(img, only_cei=False):
             hr = i * 10
             break
 
-    np.seterr(divide='ignore', invalid='ignore')
+    np.seterr(divide="ignore", invalid="ignore")
     cei = (img - (hr + 50 * 0.3)) * 2
     cei[cei > 255] = 255
     cei[cei < 0] = 0
@@ -288,10 +294,14 @@ def remove_cursive_style(img):
     results = []
 
     ret, otsu = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
-    binary = otsu if ret < 127 else sauvola(img, (int(img.shape[0] / 2), int(img.shape[0] / 2)), 127, 1e-2)
+    binary = (
+        otsu
+        if ret < 127
+        else sauvola(img, (int(img.shape[0] / 2), int(img.shape[0] / 2)), 127, 1e-2)
+    )
 
     for alpha in alpha_vals:
-        shift_x = max(-alpha * rows, 0.)
+        shift_x = max(-alpha * rows, 0.0)
         size = (cols + int(np.ceil(abs(alpha * rows))), rows)
         transform = np.asarray([[1, alpha, shift_x], [0, 1, 0]], dtype=np.float)
 
@@ -320,24 +330,29 @@ def sauvola(img, window, thresh, k):
     rows, cols = img.shape
     pad = int(np.floor(window[0] / 2))
     sum2, sqsum = cv2.integral2(
-        cv2.copyMakeBorder(img, pad, pad, pad, pad, cv2.BORDER_CONSTANT))
+        cv2.copyMakeBorder(img, pad, pad, pad, pad, cv2.BORDER_CONSTANT)
+    )
 
-    isum = sum2[window[0]:rows + window[0], window[1]:cols + window[1]] + \
-           sum2[0:rows, 0:cols] - \
-           sum2[window[0]:rows + window[0], 0:cols] - \
-           sum2[0:rows, window[1]:cols + window[1]]
+    isum = (
+        sum2[window[0] : rows + window[0], window[1] : cols + window[1]]
+        + sum2[0:rows, 0:cols]
+        - sum2[window[0] : rows + window[0], 0:cols]
+        - sum2[0:rows, window[1] : cols + window[1]]
+    )
 
-    isqsum = sqsum[window[0]:rows + window[0], window[1]:cols + window[1]] + \
-             sqsum[0:rows, 0:cols] - \
-             sqsum[window[0]:rows + window[0], 0:cols] - \
-             sqsum[0:rows, window[1]:cols + window[1]]
+    isqsum = (
+        sqsum[window[0] : rows + window[0], window[1] : cols + window[1]]
+        + sqsum[0:rows, 0:cols]
+        - sqsum[window[0] : rows + window[0], 0:cols]
+        - sqsum[0:rows, window[1] : cols + window[1]]
+    )
 
     ksize = window[0] * window[1]
     mean = isum / ksize
     std = (((isqsum / ksize) - (mean ** 2) / ksize) / ksize) ** 0.5
     threshold = (mean * (1 + k * (std / thresh - 1))) * (mean >= 100)
 
-    return np.asarray(255 * (img >= threshold), 'uint8')
+    return np.asarray(255 * (img >= threshold), "uint8")
 
 
 """
@@ -348,18 +363,31 @@ DeepSpell based text cleaning process.
     Github: https://github.com/MajorTal/DeepSpell
 """
 
-RE_DASH_FILTER = re.compile(r'[\-\˗\֊\‐\‑\‒\–\—\⁻\₋\−\﹣\－]', re.UNICODE)
-RE_APOSTROPHE_FILTER = re.compile(r'&#39;|[ʼ՚＇‘’‛❛❜ߴߵ`‵´ˊˋ{}{}{}{}{}{}{}{}{}]'.format(
-    chr(768), chr(769), chr(832), chr(833), chr(2387),
-    chr(5151), chr(5152), chr(65344), chr(8242)), re.UNICODE)
-RE_RESERVED_CHAR_FILTER = re.compile(r'[¶¤«»]', re.UNICODE)
-RE_LEFT_PARENTH_FILTER = re.compile(r'[\(\[\{\⁽\₍\❨\❪\﹙\（]', re.UNICODE)
-RE_RIGHT_PARENTH_FILTER = re.compile(r'[\)\]\}\⁾\₎\❩\❫\﹚\）]', re.UNICODE)
-RE_BASIC_CLEANER = re.compile(r'[^\w\s{}]'.format(re.escape(string.punctuation)), re.UNICODE)
+RE_DASH_FILTER = re.compile(r"[\-\˗\֊\‐\‑\‒\–\—\⁻\₋\−\﹣\－]", re.UNICODE)
+RE_APOSTROPHE_FILTER = re.compile(
+    r"&#39;|[ʼ՚＇‘’‛❛❜ߴߵ`‵´ˊˋ{}{}{}{}{}{}{}{}{}]".format(
+        chr(768),
+        chr(769),
+        chr(832),
+        chr(833),
+        chr(2387),
+        chr(5151),
+        chr(5152),
+        chr(65344),
+        chr(8242),
+    ),
+    re.UNICODE,
+)
+RE_RESERVED_CHAR_FILTER = re.compile(r"[¶¤«»]", re.UNICODE)
+RE_LEFT_PARENTH_FILTER = re.compile(r"[\(\[\{\⁽\₍\❨\❪\﹙\（]", re.UNICODE)
+RE_RIGHT_PARENTH_FILTER = re.compile(r"[\)\]\}\⁾\₎\❩\❫\﹚\）]", re.UNICODE)
+RE_BASIC_CLEANER = re.compile(
+    r"[^\w\s{}]".format(re.escape(string.punctuation)), re.UNICODE
+)
 
 LEFT_PUNCTUATION_FILTER = """!%&),.:;<=>?@\\]^_`|}~"""
 RIGHT_PUNCTUATION_FILTER = """"(/<=>@[\\^_`{|~"""
-NORMALIZE_WHITESPACE_REGEX = re.compile(r'[^\S\n]+', re.UNICODE)
+NORMALIZE_WHITESPACE_REGEX = re.compile(r"[^\S\n]+", re.UNICODE)
 
 
 def text_standardize(text):
