@@ -53,9 +53,7 @@ class DataGenerator(Dataset):
         if self.transform is not None:
             img = self.transform(img)
 
-        print(self.gt[self.images[i]])
         self.gt[self.images[i]] = pp.text_standardize(self.gt[self.images[i]])
-        print(self.gt[self.images[i]])
         y_train = self.tokenizer.encode(self.gt[self.images[i]])
 
         # padding till max length

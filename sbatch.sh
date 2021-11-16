@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=multiocr
 #SBATCH --nodes=1
-#SBATCH --gres=gpu:t4:1
+#SBATCH --gres=gpu:t4:2
 #SBATCH --ntasks-per-node=1
 #SBATCH --mem=120GB
 #SBATCH --time=24:00:00
