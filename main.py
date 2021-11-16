@@ -38,9 +38,14 @@ transform = T.Compose([T.ToTensor()])
 
 target_path = config["target_path"]
 
+<<<<<<< HEAD
 dataset = DataGenerator(source=config["source"], charset=charset, transform=transform, lang=args.lang)
 train_test_split = [int(0.9* len(dataset)), len(dataset)-int(0.9* len(dataset))]
 train_dataset, val_dataset = random_split(dataset, train_test_split)
+=======
+train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=2)
+val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=batch_size, shuffle=True, num_workers=2)
+>>>>>>> 66e0f082 (update)
 
 train_loader = torch.utils.data.DataLoader(
     train_dataset, batch_size=batch_size, shuffle=True, num_workers=2
