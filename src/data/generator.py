@@ -7,6 +7,7 @@ from itertools import groupby
 from torch.utils.data import Dataset
 import torch
 import cv2
+import random
 
 import src.data.preprocess as pp
 #import preprocess as pp
@@ -27,6 +28,7 @@ class DataGenerator(Dataset):
         self.source = os.path.join(source, 'image')
         self.images = os.listdir(self.source)
         self.images = [image for image in self.images if image.endswith('.jpg')]
+        random.shuffle(self.images)
 
         self.image_dataset = [asarray(Image.open(os.path.join(self.source, img))) for img in self.images]
 
