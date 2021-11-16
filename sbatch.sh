@@ -1,14 +1,14 @@
 #!/bin/bash
 #SBATCH --job-name=multiocr
 #SBATCH --nodes=1
-#SBATCH --gres=gpu:p100:4
+#SBATCH --gres=gpu:t4:1
 #SBATCH --ntasks-per-node=1
 #SBATCH --mem=120GB
 #SBATCH --time=24:00:00
 #SBATCH --account=def-kshook
 #SBATCH --cpus-per-task=8
 
-#SBATCH -o ./output.log
+#SBATCH -o ./output_pretrained.log
 
 
 

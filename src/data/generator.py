@@ -8,8 +8,8 @@ from torch.utils.data import Dataset
 import torch
 import cv2
 
-#import src.data.preprocess as pp
-import preprocess as pp
+import src.data.preprocess as pp
+#import preprocess as pp
 import os
 import numpy as np
 import unicodedata

@@ -10,6 +10,7 @@ from torchvision.models import resnet50, resnet101
 import math
 from src.data import preprocess as pp
 
+resnet_path = "resnet101-63fe2227.pth"
 
 class PositionalEncoding(nn.Module):
     def __init__(self, d_model, dropout=0.1, max_len=128):
@@ -36,7 +37,7 @@ class OCR(nn.Module):
         super().__init__()
 
         # create ResNet-101 backbone
-        self.backbone = resnet101(pretrained=True)
+        self.backbone = resnet101().load_state_dict(torch.load(resnet_path))
         del self.backbone.fc
 
         # create conversion layer
@@ -115,3 +116,6 @@ def make_model(vocab_len, hidden_dim=512, nheads=4,
                num_encoder_layers=4, num_decoder_layers=4):
     return OCR(vocab_len, hidden_dim, nheads,
                num_encoder_layers, num_decoder_layers)
+
+if __name__ == "__main__":
+    make_model()
