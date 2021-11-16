@@ -8,8 +8,8 @@ from torch.utils.data import Dataset
 import torch
 import cv2
 
-import src.data.preprocess as pp
-#import preprocess as pp
+#import src.data.preprocess as pp
+import preprocess as pp
 import os
 import numpy as np
 import unicodedata
@@ -44,7 +44,6 @@ class DataGenerator(Dataset):
     def __getitem__(self, i):
         img = self.images[i]
         img = os.path.join(self.source, img)
-        #print(self.gt[self.images[i]])
 
         img = pp.preprocess(img, (1024, 128, 1))
         # making image compatible with resnet
@@ -54,6 +53,9 @@ class DataGenerator(Dataset):
         if self.transform is not None:
             img = self.transform(img)
 
+        print(self.gt[self.images[i]])
+        self.gt[self.images[i]] = pp.text_standardize(self.gt[self.images[i]])
+        print(self.gt[self.images[i]])
         y_train = self.tokenizer.encode(self.gt[self.images[i]])
 
         # padding till max length
@@ -118,7 +120,7 @@ if __name__ == "__main__":
     split = "train"
     transform = T.Compose([
         T.ToTensor()])
-    dg = DataGenerator("raw_data/IAM", charset, max_text_length, transform)
+    dg = DataGenerator("raw_data/IAM", charset, transform)
     dg[1000]
     '''train_loader = torch.utils.data.DataLoader(dg, batch_size=16, shuffle=False, num_workers=2)
     for a, b in train_loader:

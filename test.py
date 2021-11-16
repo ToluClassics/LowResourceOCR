@@ -16,12 +16,13 @@ with open('config.yaml', 'r') as f:
 charset = config['charset']
 tokenizer = Tokenizer(charset)
 
-model = make_model(vocab_len=tokenizer.vocab_size)
+print("[INFO] Load pretrained model")
+model = make_model(hidden_dim=256, vocab_len=tokenizer.vocab_size)
 model.to(device)
-
 model.load_state_dict(torch.load('run/checkpoint_weights_iam.pt', map_location=device))
 
 transform = T.Compose([T.ToTensor()])
+
 
 def get_memory(model, imgs):
     x = model.conv(model.get_feature(imgs))
@@ -62,11 +63,12 @@ def test(model, test_loader, max_text_length):
 dataset = DataGenerator(source=config['source'], charset=charset, transform=transform)
 test_loader = torch.utils.data.DataLoader(dataset, batch_size=1, shuffle=False, num_workers=2)
 
-max_text_length = 128 #dataset.max_len
+max_text_length = 128  # dataset.max_len
 
 
 if __name__ == "__main__":
     torch.multiprocessing.freeze_support()
+    print("[INFO] Testing Trained Model")
     predicts, gt, imgs = test(model, test_loader, max_text_length)
 
     predicts = list(map(lambda x: x.replace('SOS', '').replace('EOS', ''), predicts))
@@ -78,11 +80,11 @@ if __name__ == "__main__":
                                                                                                     evaluate[1],
                                                                                                     evaluate[2]))
     for i, item in enumerate(imgs[:10]):
-        print("=" * 1024, "\n")
+        print("=" * 100, "\n")
         img = item.permute(1, 2, 0).cpu().numpy().astype(np.uint8)
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-        cv2.imshow(pp.adjust_to_see(img))
+        cv2.imshow("image", pp.adjust_to_see(img))
         cv2.waitKey(0)
         print("Ground truth:", gt[i])
         print("Prediction :", predicts[i], "\n")
