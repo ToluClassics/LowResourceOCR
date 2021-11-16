@@ -29,8 +29,8 @@ target_path = config['target_path']
 dataset = DataGenerator(source=config['source'], charset=charset, transform=transform)
 train_dataset, val_dataset = random_split(dataset, config['train_test_split'])
 
-train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=batch_size, shuffle=False, num_workers=2)
-val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=batch_size, shuffle=False, num_workers=2)
+train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=2)
+val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=batch_size, shuffle=True, num_workers=2)
 
 
 model = make_model(vocab_len=tokenizer.vocab_size)
