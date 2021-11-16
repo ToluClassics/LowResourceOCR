@@ -17,7 +17,7 @@ charset = config['charset']
 tokenizer = Tokenizer(charset)
 
 print("[INFO] Load pretrained model")
-model = make_model(hidden_dim=256, vocab_len=tokenizer.vocab_size)
+model = make_model(hidden_dim=512, vocab_len=tokenizer.vocab_size)
 model.to(device)
 model.load_state_dict(torch.load('run/checkpoint_weights_iam.pt', map_location=device))
 
@@ -84,7 +84,7 @@ if __name__ == "__main__":
         img = item.permute(1, 2, 0).cpu().numpy().astype(np.uint8)
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-        cv2.imshow("image", pp.adjust_to_see(img))
-        cv2.waitKey(0)
+        #cv2.imshow("image", pp.adjust_to_see(img))
+        #cv2.waitKey(0)
         print("Ground truth:", gt[i])
         print("Prediction :", predicts[i], "\n")
