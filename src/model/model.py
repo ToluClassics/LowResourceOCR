@@ -2,13 +2,9 @@ from pathlib import Path
 
 import torch
 
-from itertools import groupby
-import numpy as np
-from torch.autograd import Variable
 from torch import nn
 from torchvision.models import resnet50, resnet101
 import math
-from src.data import preprocess as pp
 
 resnet_path = "resnet101-63fe2227.pth"
 
@@ -37,8 +33,10 @@ class OCR(nn.Module):
         super().__init__()
 
         # create ResNet-101 backbone
-        self.backbone = resnet101().load_state_dict(torch.load(resnet_path))
+        self.backbone = resnet101()
         del self.backbone.fc
+        self.backbone.train()
+        #self.backbone = self.backbone.load_state_dict(torch.load(resnet_path))
 
         # create conversion layer
         self.conv = nn.Conv2d(2048, hidden_dim, 1)
@@ -117,5 +115,6 @@ def make_model(vocab_len, hidden_dim=512, nheads=4,
     return OCR(vocab_len, hidden_dim, nheads,
                num_encoder_layers, num_decoder_layers)
 
+
 if __name__ == "__main__":
-    make_model()
+    make_model(vocab_len=99)
