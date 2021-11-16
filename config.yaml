@@ -1,4 +1,4 @@
-batch_size: 16
+batch_size: 32
 charset: "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&'\"()*+,-./:;<=>?@[]^_`{|}~\\ "
 target_path: 'run/checkpoint_weights_iam.pt'
 source: "raw_data/IAM"
