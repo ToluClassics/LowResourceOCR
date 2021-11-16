@@ -36,7 +36,7 @@ class OCR(nn.Module):
         super().__init__()
 
         # create ResNet-101 backbone
-        self.backbone = resnet101()
+        self.backbone = resnet101(pretrained=True)
         del self.backbone.fc
 
         # create conversion layer
@@ -111,7 +111,7 @@ class OCR(nn.Module):
         return self.vocab(output.transpose(0, 1))
 
 
-def make_model(vocab_len, hidden_dim=256, nheads=4,
+def make_model(vocab_len, hidden_dim=512, nheads=4,
                num_encoder_layers=4, num_decoder_layers=4):
     return OCR(vocab_len, hidden_dim, nheads,
                num_encoder_layers, num_decoder_layers)
