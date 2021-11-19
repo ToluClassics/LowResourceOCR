@@ -51,8 +51,8 @@ class DataGenerator(Dataset):
         img = os.path.join(self.source, img)
 
         img = pp.preprocess(img, (1024, 128, 1))
-        cv2.imshow("image", img)
-        cv2.waitKey(0)
+        #cv2.imshow("image", img)
+        #cv2.waitKey(0)
         # making image compatible with resnet
         img = np.repeat(img[..., np.newaxis], 3, -1)
         img = pp.normalization(img)
@@ -60,7 +60,7 @@ class DataGenerator(Dataset):
         if self.transform is not None:
             img = self.transform(img)
 
-        print(self.gt[self.images[i]])
+        #print(self.gt[self.images[i]])
         self.gt[self.images[i]] = pp.text_standardize(self.gt[self.images[i]])
         y_train = self.tokenizer.encode(self.gt[self.images[i]])
 

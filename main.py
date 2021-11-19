@@ -2,6 +2,7 @@ from trainer import train, evaluate
 import time
 import yaml
 import torch
+import os
 from tqdm import tqdm
 from trainer import LabelSmoothing
 from src.data.generator import Tokenizer, DataGenerator
@@ -39,6 +40,8 @@ val_loader = torch.utils.data.DataLoader(
 
 model = make_model(vocab_len=tokenizer.vocab_size)
 model.to(device)
+
+model.load_state_dict(torch.load("run/checkpoint_weights_trdg.pt"))
 
 # train model
 criterion = LabelSmoothing(size=tokenizer.vocab_size, padding_idx=0, smoothing=0.1)
