@@ -19,7 +19,7 @@ tokenizer = Tokenizer(charset)
 print("[INFO] Load pretrained model")
 model = make_model(hidden_dim=512, vocab_len=tokenizer.vocab_size)
 model.to(device)
-model.load_state_dict(torch.load("run/checkpoint_weights_iam.pt", map_location=device))
+model.load_state_dict(torch.load("run/checkpoint_weights_trdg.pt", map_location=device))
 
 transform = T.Compose([T.ToTensor()])
 
@@ -48,7 +48,7 @@ def test(model, test_loader, max_text_length):
     gt = []
     imgs = []
     with torch.no_grad():
-        for batch in test_loader:
+        for k, batch in enumerate(test_loader):
             src, trg = batch
             imgs.append(src.flatten(0, 1))
             src, trg = src.to(device), trg.to(device)
@@ -72,6 +72,9 @@ def test(model, test_loader, max_text_length):
                     break
             predicts.append(tokenizer.decode(out_indexes))
             gt.append(tokenizer.decode(trg.flatten(0, 1)))
+
+            if k == 20:
+                break
     return predicts, gt, imgs
 
 
