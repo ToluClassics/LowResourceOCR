@@ -43,6 +43,7 @@ def single_image_inference(model, img, tokenizer, transform, device):
     pre = tokenizer.decode(out_indexes[1:])
     return pre
 
+
 def get_memory(model, imgs):
     x = model.conv(model.get_feature(imgs))
     bs, _, H, W = x.shape
@@ -61,7 +62,9 @@ def get_memory(model, imgs):
 
 
 if __name__ == "__main__":
-    image_path = "raw_data/trdg/image/abbandono_monny_when'd_postaxiad_impersonations_3204.jpg"
+    image_path = (
+        "raw_data/trdg/image/abietinic_Saud_timekeepership_fraenum_normalization_6192.jpg"
+    )
     img = pp.preprocess(image_path, input_size=(1024, 128, 1))
 
     # making image compatible with resnet
@@ -74,7 +77,9 @@ if __name__ == "__main__":
     print("[INFO] Load pretrained model")
     model = make_model(hidden_dim=512, vocab_len=tokenizer.vocab_size)
     model.to(device)
-    model.load_state_dict(torch.load("run/checkpoint_weights_trdg.pt", map_location=device))
+    model.load_state_dict(
+        torch.load("run/checkpoint_weights_eng_trdg.pt", map_location=device)
+    )
 
     transform = T.Compose([T.ToTensor()])
 
