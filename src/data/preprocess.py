@@ -411,3 +411,18 @@ def text_standardize(text):
     text = NORMALIZE_WHITESPACE_REGEX.sub(" ", text.strip())
 
     return text
+
+
+def generate_charset(corpus: str):
+    corpus = corpus.replace("\n", " ")
+    charset = set(corpus)
+    return "".join(charset)
+
+
+if __name__ == "__main__":
+    #with open("/Users/mac/PycharmProjects/Transformer-OCR/raw_data/trdg/igbo_target.txt") as file:
+        #text = file.read()
+    #print(generate_charset(text))
+    sorted_characters = sorted("4;M*ṅFỌ(V%8.:6@0)+<QcaO=#Yd}yIỤịi~Tuk2l,ọt&[s3-z eEbxrwq!SZṄ9B/?'A7RW$UẁvLụ|PJC{j\"DỊKn1X5op_hg>mfN]G^̣`H")
+    a_string = "".join(sorted_characters)
+    print(a_string)

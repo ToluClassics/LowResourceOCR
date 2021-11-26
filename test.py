@@ -13,13 +13,13 @@ device = "cuda:0" if torch.cuda.is_available() == True else "cpu"
 with open("config.yaml", "r") as f:
     config = yaml.safe_load(f)
 
-charset = config["charset"]
+charset = config["eng_charset"]
 tokenizer = Tokenizer(charset)
 
 print("[INFO] Load pretrained model")
 model = make_model(hidden_dim=512, vocab_len=tokenizer.vocab_size)
 model.to(device)
-model.load_state_dict(torch.load("run/checkpoint_weights_trdg.pt", map_location=device))
+model.load_state_dict(torch.load("run/checkpoint_weights_eng_trdg.pt", map_location=device))
 
 transform = T.Compose([T.ToTensor()])
 
@@ -40,7 +40,6 @@ def get_memory(model, imgs):
     )
 
     return model.transformer.encoder(pos + 0.1 * x.flatten(2).permute(2, 0, 1))
-
 
 
 def test(model, test_loader, max_text_length):
