@@ -3,31 +3,43 @@ import time
 import yaml
 import torch
 import os
+import argparse
 from tqdm import tqdm
 from trainer import LabelSmoothing
 from src.data.generator import Tokenizer, DataGenerator
 import numpy as np
+import torch.nn as nn
 from src.model.model import make_model
 from torch.utils.data import random_split
-
 import torchvision.transforms as T
 
 with open("config.yaml", "r") as f:
     config = yaml.safe_load(f)
 
+device = "cuda:0" if torch.cuda.is_available() == True else "cpu"
+
+parser = argparse.ArgumentParser(description="Search an elasticsearch index")
+parser.add_argument("--lang", help="language to train in ", required=True)
+
+args = parser.parse_args()
+
+if args.lang == "eng":
+    charset = config["eng_charset"]
+elif args.lang == "yor":
+    charset = config["yor_charset"]
+elif args.lang == "igbo":
+    charset = config["igbo_charset"]
+
 batch_size = config["batch_size"]
 num_epochs = config["num_epochs"]
-
-
-device = "cuda:0" if torch.cuda.is_available() == True else "cpu"
-charset = config["charset"]
 
 tokenizer = Tokenizer(charset)
 transform = T.Compose([T.ToTensor()])
 
 target_path = config["target_path"]
 
-dataset = DataGenerator(source=config["source"], charset=charset, transform=transform)
+dataset = DataGenerator(source=config["source"], charset=charset, transform=transform, lang=args.lang)
+
 train_dataset, val_dataset = random_split(dataset, config["train_test_split"])
 
 train_loader = torch.utils.data.DataLoader(
@@ -37,11 +49,15 @@ val_loader = torch.utils.data.DataLoader(
     val_dataset, batch_size=batch_size, shuffle=True, num_workers=2
 )
 
-
 model = make_model(vocab_len=tokenizer.vocab_size)
 model.to(device)
+model.load_state_dict(
+    torch.load("run/checkpoint_weights_eng_trdg.pt", map_location=device)
+)
 
-model.load_state_dict(torch.load("run/checkpoint_weights_trdg.pt"))
+if args.lang in ["yor", "igbo"]:
+    model.vocab = nn.Linear(512, tokenizer.vocab_size)
+    model.decoder = nn.Embedding(tokenizer.vocab_size, 512)
 
 # train model
 criterion = LabelSmoothing(size=tokenizer.vocab_size, padding_idx=0, smoothing=0.1)

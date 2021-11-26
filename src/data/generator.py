@@ -23,10 +23,10 @@ from numpy import asarray
 class DataGenerator(Dataset):
     """Generator class with data streaming"""
 
-    def __init__(self, source, charset, transform):
+    def __init__(self, source, charset, transform, lang):
         self.transform = transform
 
-        self.source = os.path.join(source, "image")
+        self.source = os.path.join(source, f"{lang}_image")
         self.images = os.listdir(self.source)
         self.images = [image for image in self.images if image.endswith(".jpg")]
         random.shuffle(self.images)
@@ -35,7 +35,7 @@ class DataGenerator(Dataset):
             asarray(Image.open(os.path.join(self.source, img))) for img in self.images
         ]
 
-        with open(os.path.join(source, "target.txt"), "r") as f:
+        with open(os.path.join(source, f"{lang}_target.txt"), "r") as f:
             text = f.read()
         text = text.split("\n")
         text = [item.split() for item in text if len(item.strip()) > 1]
