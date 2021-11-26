@@ -42,6 +42,7 @@ def get_memory(model, imgs):
     return model.transformer.encoder(pos + 0.1 * x.flatten(2).permute(2, 0, 1))
 
 
+
 def test(model, test_loader, max_text_length):
     model.eval()
     predicts = []
