@@ -42,6 +42,7 @@ def get_memory(model, imgs):
     return model.transformer.encoder(pos + 0.1 * x.flatten(2).permute(2, 0, 1))
 
 
+
 def test(model, test_loader, max_text_length):
     model.eval()
     predicts = []
@@ -73,14 +74,14 @@ def test(model, test_loader, max_text_length):
             predicts.append(tokenizer.decode(out_indexes))
             gt.append(tokenizer.decode(trg.flatten(0, 1)))
 
-            if k == 20:
+            if k == 10:
                 break
     return predicts, gt, imgs
 
 
 dataset = DataGenerator(source=config["source"], charset=charset, transform=transform)
 test_loader = torch.utils.data.DataLoader(
-    dataset, batch_size=1, shuffle=False, num_workers=2
+    dataset, batch_size=1, shuffle=True, num_workers=2
 )
 
 max_text_length = 128  # dataset.max_len
@@ -109,7 +110,7 @@ if __name__ == "__main__":
         img = item.permute(1, 2, 0).cpu().numpy().astype(np.uint8)
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-        # cv2.imshow("image", pp.adjust_to_see(img))
-        # cv2.waitKey(0)
+        cv2.imshow("image", pp.adjust_to_see(img))
+        cv2.waitKey(0)
         print("Ground truth:", gt[i])
         print("Prediction :", predicts[i], "\n")
