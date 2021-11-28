@@ -11,7 +11,7 @@ import random
 
 import src.data.preprocess as pp
 
-# import preprocess as pp
+#import preprocess as pp
 import os
 import numpy as np
 import unicodedata
@@ -128,11 +128,10 @@ class Tokenizer:
 
 if __name__ == "__main__":
     charset = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVW\"XYZ!#$%&'()*+,-./:;<=>?@[\]^_`{|}~ "
-    max_text_length = 100
     split = "train"
     transform = T.Compose([T.ToTensor()])
-    dg = DataGenerator("raw_data/trdg", charset, transform)
-    dg[1000]
+    dg = DataGenerator("raw_data/trdg", charset, transform, lang='igbo')
+    print(dg[1000][1])
     """train_loader = torch.utils.data.DataLoader(dg, batch_size=16, shuffle=False, num_workers=2)
     for a, b in train_loader:
         print(a.shape)

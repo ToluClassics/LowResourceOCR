@@ -13,8 +13,9 @@ device = "cuda:0" if torch.cuda.is_available() == True else "cpu"
 with open("config.yaml", "r") as f:
     config = yaml.safe_load(f)
 
+max_text_length = 128  # dataset.max_len for english
 charset = config["eng_charset"]
-tokenizer = Tokenizer(charset)
+tokenizer = Tokenizer(charset, max_text_length=max_text_length)
 
 print("[INFO] Load pretrained model")
 model = make_model(hidden_dim=512, vocab_len=tokenizer.vocab_size)
@@ -82,8 +83,6 @@ dataset = DataGenerator(source=config["source"], charset=charset, transform=tran
 test_loader = torch.utils.data.DataLoader(
     dataset, batch_size=1, shuffle=True, num_workers=2
 )
-
-max_text_length = 128  # dataset.max_len
 
 
 if __name__ == "__main__":
