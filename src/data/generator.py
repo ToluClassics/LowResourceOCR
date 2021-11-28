@@ -42,7 +42,7 @@ class DataGenerator(Dataset):
         self.gt = {k[0]: " ".join(k[1:]) for k in text}
 
         self.max_len = max([len(item) for item in list(self.gt.values())])
-        self.tokenizer = Tokenizer(charset, 128)
+        self.tokenizer = Tokenizer(charset, self.max_len)
 
         self.size = len(self.images)
 
@@ -78,7 +78,7 @@ class DataGenerator(Dataset):
 class Tokenizer:
     """Manager tokens functions and charset/dictionary properties"""
 
-    def __init__(self, chars, max_text_length=128):
+    def __init__(self, chars, max_text_length):
         self.PAD_TK, self.UNK_TK, self.SOS, self.EOS = "¶", "¤", "SOS", "EOS"
         self.chars = (
             [self.PAD_TK] + [self.UNK_TK] + [self.SOS] + [self.EOS] + list(chars)
