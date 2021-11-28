@@ -18,10 +18,12 @@ with open("config.yaml", "r") as f:
 
 device = "cuda:0" if torch.cuda.is_available() == True else "cpu"
 
-parser = argparse.ArgumentParser(description="Search an elasticsearch index")
+parser = argparse.ArgumentParser(description="Train a language OCR")
 parser.add_argument("--lang", help="language to train in ", required=True)
 
 args = parser.parse_args()
+
+print(f"[INFO] Language to train OCR for is {args.lang}")
 
 if args.lang == "eng":
     charset = config["eng_charset"]
@@ -29,6 +31,8 @@ elif args.lang == "yor":
     charset = config["yor_charset"]
 elif args.lang == "igbo":
     charset = config["igbo_charset"]
+
+print(f"[INFO] Model Parameters are : {config}")
 
 batch_size = config["batch_size"]
 num_epochs = config["num_epochs"]
@@ -38,14 +42,13 @@ transform = T.Compose([T.ToTensor()])
 
 target_path = config["target_path"]
 
-<<<<<<< HEAD
+print("[INFO] Generating Dataset Loader")
 dataset = DataGenerator(source=config["source"], charset=charset, transform=transform, lang=args.lang)
 train_test_split = [int(0.9* len(dataset)), len(dataset)-int(0.9* len(dataset))]
 train_dataset, val_dataset = random_split(dataset, train_test_split)
-=======
-train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=2)
-val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=batch_size, shuffle=True, num_workers=2)
->>>>>>> 66e0f082 (update)
+
+print(f"[INFO] Length of training dataset is {len(train_dataset)}")
+print(f"[INFO] Length of validation dataset is {len(val_dataset)}")
 
 train_loader = torch.utils.data.DataLoader(
     train_dataset, batch_size=batch_size, shuffle=True, num_workers=2
@@ -54,8 +57,9 @@ val_loader = torch.utils.data.DataLoader(
     val_dataset, batch_size=batch_size, shuffle=True, num_workers=2
 )
 
+print(f"[INFO] Load pretrained model")
+
 model = make_model(vocab_len=99)
-model.to(device)
 model.load_state_dict(
     torch.load("run/checkpoint_weights_eng_trdg.pt", map_location=device)
 )
@@ -63,6 +67,7 @@ model.load_state_dict(
 if args.lang in ["yor", "igbo"]:
     model.vocab = nn.Linear(512, tokenizer.vocab_size)
     model.decoder = nn.Embedding(tokenizer.vocab_size, 512)
+    model.to(device)
 
 # train model
 criterion = LabelSmoothing(size=tokenizer.vocab_size, padding_idx=0, smoothing=0.1)

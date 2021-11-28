@@ -6,9 +6,9 @@
 #SBATCH --mem=120GB
 #SBATCH --time=72:00:00
 #SBATCH --account=def-kshook
-#SBATCH --cpus-per-task=8
+#SBATCH --cpus-per-task=16
 
-#SBATCH -o ./output_pretrained_new.log
+#SBATCH -o ./output_igbo.log
 
 
 
@@ -16,4 +16,4 @@
 export ENVDIR=venv
 source $ENVDIR/bin/activate
 
-nohup python3 main.py
+nohup python3 main.py --lang igbo
