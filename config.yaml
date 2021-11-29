@@ -7,4 +7,4 @@ source: "raw_data/trdg"
 lr: .00001
 num_epochs: 500
 eng_max_text_len : 128
-igbo_max_text_len : 376
+igbo_max_text_len : 200

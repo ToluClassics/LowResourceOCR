@@ -420,9 +420,7 @@ def generate_charset(corpus: str):
 
 
 if __name__ == "__main__":
-    #with open("/Users/mac/PycharmProjects/Transformer-OCR/raw_data/trdg/igbo_target.txt") as file:
-        #text = file.read()
-    #print(generate_charset(text))
-    sorted_characters = sorted("4;M*ṅFỌ(V%8.:6@0)+<QcaO=#Yd}yIỤịi~Tuk2l,ọt&[s3-z eEbxrwq!SZṄ9B/?'A7RW$UẁvLụ|PJC{j\"DỊKn1X5op_hg>mfN]G^̣`H")
-    a_string = "".join(sorted_characters)
-    print(a_string)
+    text = 'arụ_lue_atụtụ_ụdala_Selina_beraba_akwa_nne_anarọ_ya_ntị_ọghighe_oobo_ife'
+    text = text.replace("_", " ")
+    text = text_standardize(text)
+    print(text)

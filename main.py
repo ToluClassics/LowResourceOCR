@@ -13,6 +13,7 @@ from src.model.model import make_model
 from torch.utils.data import random_split
 import torchvision.transforms as T
 
+
 with open("config.yaml", "r") as f:
     config = yaml.safe_load(f)
 
@@ -25,16 +26,25 @@ args = parser.parse_args()
 
 print(f"[INFO] Language to train OCR for is {args.lang}")
 
-tokenizer = Tokenizer(config[f"{args.lang}_charset"], max_text_length=376)
+tokenizer = Tokenizer(
+    chars=config[f"{args.lang}_charset"],
+    max_text_length=config[f"{args.lang}_max_text_len"],
+    lang=args.lang,
+)
 transform = T.Compose([T.ToTensor()])
 
-config["target_path"] = config["target_path"].replace('lang', args.lang)
+config["target_path"] = config["target_path"].replace("lang", args.lang)
 
 print(f"[INFO] Model Parameters are : {config}")
 
 print("[INFO] Generating Dataset Loader")
-dataset = DataGenerator(source=config["source"], charset=config[f"{args.lang}_charset"], transform=transform, lang=args.lang)
-train_test_split = [int(0.9* len(dataset)), len(dataset)-int(0.9* len(dataset))]
+dataset = DataGenerator(
+    source=config["source"],
+    charset=config[f"{args.lang}_charset"],
+    transform=transform,
+    lang=args.lang,
+)
+train_test_split = [int(0.9 * len(dataset)), len(dataset) - int(0.9 * len(dataset))]
 train_dataset, val_dataset = random_split(dataset, train_test_split)
 
 print(f"[INFO] Length of training dataset is {len(train_dataset)}")
