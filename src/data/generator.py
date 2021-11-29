@@ -11,7 +11,8 @@ import random
 
 import src.data.preprocess as pp
 
-# import preprocess as pp
+#import preprocess as pp
+
 import os
 import numpy as np
 import unicodedata
@@ -22,8 +23,7 @@ from numpy import asarray
 
 class DataGenerator(Dataset):
     """Generator class with data streaming"""
-
-    def __init__(self, source, charset, transform, lang):
+    def __init__(self, source, charset, transform, lang, max_len=200):
         self.transform = transform
 
         self.source = os.path.join(source, f"{lang}_image")
@@ -41,8 +41,8 @@ class DataGenerator(Dataset):
         text = [item.split() for item in text if len(item.strip()) > 1]
         self.gt = {k[0]: " ".join(k[1:]) for k in text}
 
-        self.max_len = max([len(item) for item in list(self.gt.values())])
-        self.tokenizer = Tokenizer(charset, self.max_len)
+        self.max_len = max_len #max([len(item.strip()) for item in list(self.gt.values())])
+        self.tokenizer = Tokenizer(charset, self.max_len, lang=lang)
 
         self.size = len(self.images)
 
@@ -78,7 +78,7 @@ class DataGenerator(Dataset):
 class Tokenizer:
     """Manager tokens functions and charset/dictionary properties"""
 
-    def __init__(self, chars, max_text_length):
+    def __init__(self, chars, max_text_length, lang):
         self.PAD_TK, self.UNK_TK, self.SOS, self.EOS = "¶", "¤", "SOS", "EOS"
         self.chars = (
             [self.PAD_TK] + [self.UNK_TK] + [self.SOS] + [self.EOS] + list(chars)
@@ -88,15 +88,21 @@ class Tokenizer:
 
         self.vocab_size = len(self.chars)
         self.maxlen = max_text_length
+        self.lang = lang
 
     def encode(self, text):
         """Encode text to vector"""
+        if self.lang == 'eng':
+            text = (
+                unicodedata.normalize("NFKD", text)
+                .encode("ASCII", "ignore")
+                .decode("ASCII")
+            )
+        else:
+            text = (
+                unicodedata.normalize("NFC", text)
+            )
 
-        text = (
-            unicodedata.normalize("NFKD", text)
-            .encode("ASCII", "ignore")
-            .decode("ASCII")
-        )
         text = " ".join(text.split())
 
         groups = ["".join(group) for _, group in groupby(text)]
@@ -127,14 +133,18 @@ class Tokenizer:
 
 
 if __name__ == "__main__":
-    charset = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVW\"XYZ!#$%&'()*+,-./:;<=>?@[\]^_`{|}~ "
-    max_text_length = 100
+    charset = "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~̣ṄṅẁỊịỌọỤụ "
     split = "train"
     transform = T.Compose([T.ToTensor()])
-    dg = DataGenerator("raw_data/trdg", charset, transform)
-    dg[1000]
-    """train_loader = torch.utils.data.DataLoader(dg, batch_size=16, shuffle=False, num_workers=2)
-    for a, b in train_loader:
-        print(a.shape)
-        print(b.shape)
-        break"""
+    dg = DataGenerator("raw_data/trdg", charset, transform, lang='igbo')
+    train_loader = torch.utils.data.DataLoader(dg, batch_size=32, shuffle=False, num_workers=2)
+    for i, (a, b) in enumerate(train_loader):
+        print(i)
+    '''orig_text = "iru igwe di ọkpala da akakpọ dịnyelụ anụ ugboko"
+    tokenizer = Tokenizer(chars=charset, max_text_length= 183, lang="igbo")
+    encode = tokenizer.encode(orig_text)
+    text = tokenizer.decode(encode)
+    print(len(text))
+    print(len(encode))
+    print(len(orig_text))
+    print(text)'''
