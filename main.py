@@ -25,25 +25,15 @@ args = parser.parse_args()
 
 print(f"[INFO] Language to train OCR for is {args.lang}")
 
-if args.lang == "eng":
-    charset = config["eng_charset"]
-elif args.lang == "yor":
-    charset = config["yor_charset"]
-elif args.lang == "igbo":
-    charset = config["igbo_charset"]
+tokenizer = Tokenizer(config[f"{args.lang}_charset"], max_text_length=376)
+transform = T.Compose([T.ToTensor()])
+
+config["target_path"] = config["target_path"].replace('lang', args.lang)
 
 print(f"[INFO] Model Parameters are : {config}")
 
-batch_size = config["batch_size"]
-num_epochs = config["num_epochs"]
-
-tokenizer = Tokenizer(charset)
-transform = T.Compose([T.ToTensor()])
-
-target_path = config["target_path"]
-
 print("[INFO] Generating Dataset Loader")
-dataset = DataGenerator(source=config["source"], charset=charset, transform=transform, lang=args.lang)
+dataset = DataGenerator(source=config["source"], charset=config[f"{args.lang}_charset"], transform=transform, lang=args.lang)
 train_test_split = [int(0.9* len(dataset)), len(dataset)-int(0.9* len(dataset))]
 train_dataset, val_dataset = random_split(dataset, train_test_split)
 
@@ -51,10 +41,10 @@ print(f"[INFO] Length of training dataset is {len(train_dataset)}")
 print(f"[INFO] Length of validation dataset is {len(val_dataset)}")
 
 train_loader = torch.utils.data.DataLoader(
-    train_dataset, batch_size=batch_size, shuffle=True, num_workers=2
+    train_dataset, batch_size=config["batch_size"], shuffle=True, num_workers=2
 )
 val_loader = torch.utils.data.DataLoader(
-    val_dataset, batch_size=batch_size, shuffle=True, num_workers=2
+    val_dataset, batch_size=config["batch_size"], shuffle=True, num_workers=2
 )
 
 print(f"[INFO] Load pretrained model")
@@ -88,7 +78,7 @@ def main():
     best_valid_loss = np.inf
     c = 0
     print("[INFO] Training Begin ......")
-    for epoch in range(num_epochs):
+    for epoch in range(config["num_epochs"]):
         print(
             f"Epoch: {epoch + 1:02}", "learning rate{}".format(scheduler.get_last_lr())
         )
@@ -104,7 +94,7 @@ def main():
         c += 1
         if valid_loss < best_valid_loss:
             best_valid_loss = valid_loss
-            torch.save(model.state_dict(), target_path)
+            torch.save(model.state_dict(), config["target_path"])
             c = 0
 
         if c > 4:
