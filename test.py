@@ -78,7 +78,6 @@ def test(model, test_loader, max_text_length):
                 break
     return predicts, gt, imgs
 
-
 dataset = DataGenerator(source=config["source"], charset=charset, transform=transform)
 test_loader = torch.utils.data.DataLoader(
     dataset, batch_size=1, shuffle=True, num_workers=2

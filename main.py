@@ -13,7 +13,6 @@ from src.model.model import make_model
 from torch.utils.data import random_split
 import torchvision.transforms as T
 
-
 with open("config.yaml", "r") as f:
     config = yaml.safe_load(f)
 
@@ -25,6 +24,18 @@ parser.add_argument("--lang", help="language to train in ", required=True)
 args = parser.parse_args()
 
 print(f"[INFO] Language to train OCR for is {args.lang}")
+
+if args.lang == "eng":
+    charset = config["eng_charset"]
+elif args.lang == "yor":
+    charset = config["yor_charset"]
+elif args.lang == "igbo":
+    charset = config["igbo_charset"]
+
+print(f"[INFO] Model Parameters are : {config}")
+
+batch_size = config["batch_size"]
+num_epochs = config["num_epochs"]
 
 tokenizer = Tokenizer(
     chars=config[f"{args.lang}_charset"],
@@ -88,6 +99,7 @@ def main():
     best_valid_loss = np.inf
     c = 0
     print("[INFO] Training Begin ......")
+
     for epoch in range(config["num_epochs"]):
         print(
             f"Epoch: {epoch + 1:02}", "learning rate{}".format(scheduler.get_last_lr())
