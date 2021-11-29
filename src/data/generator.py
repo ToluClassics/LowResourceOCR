@@ -9,9 +9,9 @@ import torch
 import cv2
 import random
 
-import src.data.preprocess as pp
+#import src.data.preprocess as pp
 
-#import preprocess as pp
+import preprocess as pp
 
 import os
 import numpy as np
@@ -60,7 +60,6 @@ class DataGenerator(Dataset):
         if self.transform is not None:
             img = self.transform(img)
 
-        #print(self.gt[self.images[i]])
         self.gt[self.images[i]] = pp.text_standardize(self.gt[self.images[i]])
         y_train = self.tokenizer.encode(self.gt[self.images[i]])
 
@@ -140,11 +139,3 @@ if __name__ == "__main__":
     train_loader = torch.utils.data.DataLoader(dg, batch_size=32, shuffle=False, num_workers=2)
     for i, (a, b) in enumerate(train_loader):
         print(i)
-    '''orig_text = "iru igwe di ọkpala da akakpọ dịnyelụ anụ ugboko"
-    tokenizer = Tokenizer(chars=charset, max_text_length= 183, lang="igbo")
-    encode = tokenizer.encode(orig_text)
-    text = tokenizer.decode(encode)
-    print(len(text))
-    print(len(encode))
-    print(len(orig_text))
-    print(text)'''
