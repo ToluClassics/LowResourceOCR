@@ -9,9 +9,9 @@ import torch
 import cv2
 import random
 
-#import src.data.preprocess as pp
+import src.data.preprocess as pp
 
-import preprocess as pp
+#import preprocess as pp
 
 import os
 import numpy as np
