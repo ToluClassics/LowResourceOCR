@@ -1,6 +1,5 @@
 h5py
 llvmlite
-numba==0.54.1
 numpy==1.20.3
 opencv-python
 Pillow==8.4.0
