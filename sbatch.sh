@@ -16,4 +16,6 @@
 export ENVDIR=venv
 source $ENVDIR/bin/activate
 
+python3 -c "import torch; torch.cuda.empty_cache()"
+
 nohup python3 main.py --lang igbo
