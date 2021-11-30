@@ -2,7 +2,7 @@ batch_size: 32
 eng_charset: "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&'\"()*+,-./:;<=>?@[]^_`{|}~\\ "
 yor_charset: "!\"#$%&'()*+,-.0123456789:;=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz©ÀÁÅÈÉÌÍÒÓÙÚàáèéëìíòóôõöùúüćėŃńōšǸǹʻˈː̣̀́ṢṣẸẹịỌọ​‎–—‘’“”…←−▪► "
 igbo_charset: "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~̣ṄṅẁỊịỌọỤụ "
-target_path: 'run/checkpoint_weights_eng_trdg.pt'
+target_path: 'run/checkpoint_weights_lang_trdg.pt'
 source: "raw_data/trdg"
 lr: .00001
 num_epochs: 500
