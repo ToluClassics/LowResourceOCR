@@ -4,9 +4,15 @@ from src.data.evaluation import ocr_metrics
 import torch
 import yaml
 import cv2
+import argparse
 import torchvision.transforms as T
 import numpy as np
 import src.data.preprocess as pp
+
+parser = argparse.ArgumentParser(description="Train a language OCR")
+parser.add_argument("--lang", help="language to train in ", required=True)
+
+args = parser.parse_args()
 
 device = "cuda:0" if torch.cuda.is_available() == True else "cpu"
 
@@ -63,7 +69,7 @@ def get_memory(model, imgs):
 
 if __name__ == "__main__":
     image_path = (
-        "raw_data/trdg/image/abietinic_Saud_timekeepership_fraenum_normalization_6192.jpg"
+        "raw_data/trdg/igbo_image/A_ga-akpụkpọ_ụnọ_anyị_ochiịe_echi_anụ_oghighe_fụ_afụfụ_iru_ifele_nọkwalụ_1344.jpg"
     )
     img = pp.preprocess(image_path, input_size=(1024, 128, 1))
 
@@ -71,14 +77,14 @@ if __name__ == "__main__":
     img = np.repeat(img[..., np.newaxis], 3, -1)
     x_test = pp.normalization(img)
 
-    charset = config["charset"]
-    tokenizer = Tokenizer(charset)
+    charset = config[f"{args.lang}_charset"]
+    tokenizer = Tokenizer(charset, lang=args.lang, max_text_length=config[f'{args.lang}_max_text_len'])
 
     print("[INFO] Load pretrained model")
     model = make_model(hidden_dim=512, vocab_len=tokenizer.vocab_size)
     model.to(device)
     model.load_state_dict(
-        torch.load("run/checkpoint_weights_eng_trdg.pt", map_location=device)
+        torch.load(f"run/checkpoint_weights_{args.lang}_trdg.pt", map_location=device)
     )
 
     transform = T.Compose([T.ToTensor()])
