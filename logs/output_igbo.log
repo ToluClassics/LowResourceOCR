@@ -1,0 +1,2010 @@
+[INFO] Language to train OCR for is igbo
+[INFO] Model Parameters are : {'batch_size': 32, 'eng_charset': '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&\'"()*+,-./:;<=>?@[]^_`{|}~\\ ', 'yor_charset': '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&\'"()*+,-./:;<=>?@[]^_`{|}~\\ ', 'igbo_charset': '!"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~̣ṄṅẁỊịỌọỤụ ', 'target_path': 'run/checkpoint_weights_eng_trdg.pt', 'source': 'raw_data/trdg', 'lr': 1e-05, 'num_epochs': 500, 'eng_max_text_len': 128, 'igbo_max_text_len': 200}
+[INFO] Model Parameters are : {'batch_size': 32, 'eng_charset': '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&\'"()*+,-./:;<=>?@[]^_`{|}~\\ ', 'yor_charset': '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&\'"()*+,-./:;<=>?@[]^_`{|}~\\ ', 'igbo_charset': '!"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~̣ṄṅẁỊịỌọỤụ ', 'target_path': 'run/checkpoint_weights_eng_trdg.pt', 'source': 'raw_data/trdg', 'lr': 1e-05, 'num_epochs': 500, 'eng_max_text_len': 128, 'igbo_max_text_len': 200}
+[INFO] Generating Dataset Loader
+[INFO] Length of training dataset is 3017
+[INFO] Length of validation dataset is 336
+[INFO] Load pretrained model
+[INFO] Training Begin ......
+Epoch: 01 learning rate[1e-05]
+/lustre07/scratch/odunayo/multilingual-ocr/venv/lib/python3.7/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Time: 4m 8s
+Train Loss: 5097.123
+Val   Loss: 3902.672
+Epoch: 02 learning rate[1e-05]
+Time: 4m 5s
+Train Loss: 4025.592
+Val   Loss: 3481.546
+Epoch: 03 learning rate[1e-05]
+Time: 4m 6s
+Train Loss: 3778.706
+Val   Loss: 3398.209
+Epoch: 04 learning rate[1e-05]
+Time: 4m 8s
+Train Loss: 3686.336
+Val   Loss: 3327.783
+Epoch: 05 learning rate[1e-05]
+Time: 4m 7s
+Train Loss: 3613.085
+Val   Loss: 3242.388
+Epoch: 06 learning rate[1e-05]
+Time: 4m 8s
+Train Loss: 3546.241
+Val   Loss: 3177.428
+Epoch: 07 learning rate[1e-05]
+Time: 4m 7s
+Train Loss: 3474.083
+Val   Loss: 3119.052
+Epoch: 08 learning rate[1e-05]
+Time: 4m 11s
+Train Loss: 3401.377
+Val   Loss: 3024.074
+Epoch: 09 learning rate[1e-05]
+Time: 4m 6s
+Train Loss: 3326.130
+Val   Loss: 2947.339
+Epoch: 10 learning rate[1e-05]
+Time: 4m 6s
+Train Loss: 3249.188
+Val   Loss: 2871.941
+Epoch: 11 learning rate[1e-05]
+Time: 4m 7s
+Train Loss: 3169.896
+Val   Loss: 2791.749
+Epoch: 12 learning rate[1e-05]
+Time: 4m 10s
+Train Loss: 3083.954
+Val   Loss: 2712.720
+Epoch: 13 learning rate[1e-05]
+Time: 4m 9s
+Train Loss: 3003.100
+Val   Loss: 2702.383
+Epoch: 14 learning rate[1e-05]
+Time: 4m 10s
+Train Loss: 2933.786
+Val   Loss: 2519.366
+Epoch: 15 learning rate[1e-05]
+Time: 4m 8s
+Train Loss: 2827.380
+Val   Loss: 2437.399
+Epoch: 16 learning rate[1e-05]
+Time: 4m 7s
+Train Loss: 2736.989
+Val   Loss: 2434.864
+Epoch: 17 learning rate[1e-05]
+Time: 4m 4s
+Train Loss: 2657.206
+Val   Loss: 2560.697
+Epoch: 18 learning rate[1e-05]
+Time: 4m 8s
+Train Loss: 2556.552
+Val   Loss: 2281.181
+Epoch: 19 learning rate[1e-05]
+Time: 4m 4s
+Train Loss: 2465.353
+Val   Loss: 2456.231
+Epoch: 20 learning rate[1e-05]
+Time: 4m 7s
+Train Loss: 2364.046
+Val   Loss: 2442.786
+Epoch: 21 learning rate[1e-05]
+Time: 4m 10s
+Train Loss: 2281.949
+Val   Loss: 2194.290
+Epoch: 22 learning rate[1e-05]
+Time: 4m 7s
+Train Loss: 2200.908
+Val   Loss: 2126.022
+Epoch: 23 learning rate[1e-05]
+Time: 4m 4s
+Train Loss: 2124.371
+Val   Loss: 2069.216
+Epoch: 24 learning rate[1e-05]
+Time: 4m 7s
+Train Loss: 2050.152
+Val   Loss: 2005.777
+Epoch: 25 learning rate[1e-05]
+Time: 4m 5s
+Train Loss: 1963.629
+Val   Loss: 1872.551
+Epoch: 26 learning rate[1e-05]
+Time: 4m 5s
+Train Loss: 1889.243
+Val   Loss: 1791.907
+Epoch: 27 learning rate[1e-05]
+Time: 4m 7s
+Train Loss: 1834.750
+Val   Loss: 2008.470
+Epoch: 28 learning rate[1e-05]
+Time: 4m 7s
+Train Loss: 1758.480
+Val   Loss: 1813.037
+Epoch: 29 learning rate[1e-05]
+Time: 4m 8s
+Train Loss: 1700.854
+Val   Loss: 1891.223
+Epoch: 30 learning rate[1e-05]
+Time: 4m 19s
+Train Loss: 1630.883
+Val   Loss: 1690.778
+Epoch: 31 learning rate[1e-05]
+Time: 4m 8s
+Train Loss: 1584.056
+Val   Loss: 1830.880
+Epoch: 32 learning rate[1e-05]
+Time: 4m 10s
+Train Loss: 1525.594
+Val   Loss: 1657.633
+Epoch: 33 learning rate[1e-05]
+Time: 4m 4s
+Train Loss: 1472.438
+Val   Loss: 1774.923
+Epoch: 34 learning rate[1e-05]
+Time: 4m 3s
+Train Loss: 1441.250
+Val   Loss: 1728.372
+Epoch: 35 learning rate[1e-05]
+Time: 4m 6s
+Train Loss: 1378.801
+Val   Loss: 1634.342
+Epoch: 36 learning rate[1e-05]
+Time: 4m 7s
+Train Loss: 1333.468
+Val   Loss: 1770.640
+Epoch: 37 learning rate[1e-05]
+Time: 4m 8s
+Train Loss: 1291.147
+Val   Loss: 1604.332
+Epoch: 38 learning rate[1e-05]
+Time: 4m 6s
+Train Loss: 1241.690
+Val   Loss: 1627.384
+Epoch: 39 learning rate[1e-05]
+Time: 4m 4s
+Train Loss: 1222.890
+Val   Loss: 1626.818
+Epoch: 40 learning rate[1e-05]
+Time: 4m 8s
+Train Loss: 1185.419
+Val   Loss: 1616.731
+Epoch: 41 learning rate[1e-05]
+Time: 4m 6s
+Train Loss: 1131.737
+Val   Loss: 1722.585
+Epoch: 42 learning rate[1e-05]
+Time: 4m 8s
+Train Loss: 1091.526
+Val   Loss: 1642.299
+Epoch: 43 learning rate[9.5e-06]
+Time: 4m 5s
+Train Loss: 1058.673
+Val   Loss: 1635.250
+Epoch: 44 learning rate[9.5e-06]
+Time: 4m 6s
+Train Loss: 1026.505
+Val   Loss: 1588.534
+Epoch: 45 learning rate[9.5e-06]
+Time: 4m 6s
+Train Loss: 999.179
+Val   Loss: 1766.927
+Epoch: 46 learning rate[9.5e-06]
+Time: 4m 5s
+Train Loss: 968.171
+Val   Loss: 1762.791
+Epoch: 47 learning rate[9.5e-06]
+Time: 4m 5s
+Train Loss: 932.615
+Val   Loss: 1587.552
+Epoch: 48 learning rate[9.5e-06]
+Time: 4m 9s
+Train Loss: 921.582
+Val   Loss: 1647.097
+Epoch: 49 learning rate[9.5e-06]
+Time: 4m 8s
+Train Loss: 893.874
+Val   Loss: 1773.919
+Epoch: 50 learning rate[9.5e-06]
+Time: 4m 8s
+Train Loss: 869.647
+Val   Loss: 1759.283
+Epoch: 51 learning rate[9.5e-06]
+Time: 4m 12s
+Train Loss: 834.560
+Val   Loss: 1592.451
+Epoch: 52 learning rate[9.5e-06]
+Time: 4m 7s
+Train Loss: 811.309
+Val   Loss: 1565.720
+Epoch: 53 learning rate[9.5e-06]
+Time: 4m 9s
+Train Loss: 797.762
+Val   Loss: 1660.908
+Epoch: 54 learning rate[9.5e-06]
+Time: 4m 5s
+Train Loss: 778.577
+Val   Loss: 1589.705
+Epoch: 55 learning rate[9.5e-06]
+Time: 4m 7s
+Train Loss: 763.510
+Val   Loss: 1674.186
+Epoch: 56 learning rate[9.5e-06]
+Time: 4m 8s
+Train Loss: 733.494
+Val   Loss: 1723.074
+Epoch: 57 learning rate[9.5e-06]
+Time: 4m 7s
+Train Loss: 716.451
+Val   Loss: 1647.623
+Epoch: 58 learning rate[9.025e-06]
+Time: 4m 8s
+Train Loss: 692.301
+Val   Loss: 1615.530
+Epoch: 59 learning rate[9.025e-06]
+Time: 4m 7s
+Train Loss: 674.318
+Val   Loss: 1641.635
+Epoch: 60 learning rate[9.025e-06]
+Time: 4m 8s
+Train Loss: 659.074
+Val   Loss: 1601.019
+Epoch: 61 learning rate[9.025e-06]
+Time: 4m 6s
+Train Loss: 640.055
+Val   Loss: 1679.666
+Epoch: 62 learning rate[9.025e-06]
+Time: 4m 6s
+Train Loss: 637.466
+Val   Loss: 1636.342
+Epoch: 63 learning rate[8.57375e-06]
+Time: 4m 5s
+Train Loss: 616.819
+Val   Loss: 1607.856
+Epoch: 64 learning rate[8.57375e-06]
+Time: 4m 6s
+Train Loss: 604.096
+Val   Loss: 1590.197
+Epoch: 65 learning rate[8.57375e-06]
+Time: 4m 4s
+Train Loss: 586.614
+Val   Loss: 1565.916
+Epoch: 66 learning rate[8.57375e-06]
+Time: 4m 6s
+Train Loss: 572.944
+Val   Loss: 1629.709
+Epoch: 67 learning rate[8.57375e-06]
+Time: 4m 4s
+Train Loss: 557.492
+Val   Loss: 1594.115
+Epoch: 68 learning rate[8.1450625e-06]
+Time: 4m 6s
+Train Loss: 540.370
+Val   Loss: 1646.935
+Epoch: 69 learning rate[8.1450625e-06]
+Time: 4m 5s
+Train Loss: 530.268
+Val   Loss: 1697.087
+Epoch: 70 learning rate[8.1450625e-06]
+Time: 4m 5s
+Train Loss: 514.654
+Val   Loss: 1642.194
+Epoch: 71 learning rate[8.1450625e-06]
+Time: 4m 5s
+Train Loss: 507.719
+Val   Loss: 1646.294
+Epoch: 72 learning rate[8.1450625e-06]
+Time: 4m 9s
+Train Loss: 500.732
+Val   Loss: 1609.653
+Epoch: 73 learning rate[7.737809375e-06]
+Time: 4m 6s
+Train Loss: 480.284
+Val   Loss: 1604.547
+Epoch: 74 learning rate[7.737809375e-06]
+Time: 4m 4s
+Train Loss: 468.591
+Val   Loss: 1596.432
+Epoch: 75 learning rate[7.737809375e-06]
+Time: 4m 6s
+Train Loss: 466.643
+Val   Loss: 1624.223
+Epoch: 76 learning rate[7.737809375e-06]
+Time: 4m 5s
+Train Loss: 453.827
+Val   Loss: 1639.762
+Epoch: 77 learning rate[7.737809375e-06]
+Time: 4m 6s
+Train Loss: 455.189
+Val   Loss: 1627.345
+Epoch: 78 learning rate[7.35091890625e-06]
+Time: 4m 7s
+Train Loss: 438.760
+Val   Loss: 1589.203
+Epoch: 79 learning rate[7.35091890625e-06]
+Time: 4m 5s
+Train Loss: 430.963
+Val   Loss: 1713.163
+Epoch: 80 learning rate[7.35091890625e-06]
+Time: 4m 5s
+Train Loss: 419.119
+Val   Loss: 1751.282
+Epoch: 81 learning rate[7.35091890625e-06]
+Time: 4m 8s
+Train Loss: 413.802
+Val   Loss: 1623.089
+Epoch: 82 learning rate[7.35091890625e-06]
+Time: 4m 7s
+Train Loss: 409.561
+Val   Loss: 1605.083
+Epoch: 83 learning rate[6.9833729609374995e-06]
+Time: 4m 7s
+Train Loss: 391.655
+Val   Loss: 1595.539
+Epoch: 84 learning rate[6.9833729609374995e-06]
+Time: 4m 11s
+Train Loss: 386.885
+Val   Loss: 1627.468
+Epoch: 85 learning rate[6.9833729609374995e-06]
+Time: 4m 6s
+Train Loss: 377.099
+Val   Loss: 1669.646
+Epoch: 86 learning rate[6.9833729609374995e-06]
+Time: 4m 6s
+Train Loss: 375.822
+Val   Loss: 1598.376
+Epoch: 87 learning rate[6.9833729609374995e-06]
+Time: 4m 7s
+Train Loss: 372.489
+Val   Loss: 1633.173
+Epoch: 88 learning rate[6.634204312890624e-06]
+Time: 4m 9s
+Train Loss: 367.352
+Val   Loss: 1638.149
+Epoch: 89 learning rate[6.634204312890624e-06]
+Time: 4m 7s
+Train Loss: 353.898
+Val   Loss: 1631.932
+Epoch: 90 learning rate[6.634204312890624e-06]
+Time: 4m 7s
+Train Loss: 348.491
+Val   Loss: 1601.678
+Epoch: 91 learning rate[6.634204312890624e-06]
+Time: 4m 8s
+Train Loss: 347.805
+Val   Loss: 1653.808
+Epoch: 92 learning rate[6.634204312890624e-06]
+Time: 4m 7s
+Train Loss: 344.643
+Val   Loss: 1666.911
+Epoch: 93 learning rate[6.302494097246093e-06]
+Time: 4m 9s
+Train Loss: 330.088
+Val   Loss: 1606.821
+Epoch: 94 learning rate[6.302494097246093e-06]
+Time: 4m 10s
+Train Loss: 327.767
+Val   Loss: 1632.323
+Epoch: 95 learning rate[6.302494097246093e-06]
+Time: 4m 7s
+Train Loss: 331.234
+Val   Loss: 1614.044
+Epoch: 96 learning rate[6.302494097246093e-06]
+Time: 4m 6s
+Train Loss: 321.012
+Val   Loss: 1658.379
+Epoch: 97 learning rate[6.302494097246093e-06]
+Time: 4m 7s
+Train Loss: 309.839
+Val   Loss: 1645.652
+Epoch: 98 learning rate[5.9873693923837885e-06]
+Time: 4m 6s
+Train Loss: 308.551
+Val   Loss: 1609.920
+Epoch: 99 learning rate[5.9873693923837885e-06]
+Time: 4m 10s
+Train Loss: 303.757
+Val   Loss: 1624.488
+Epoch: 100 learning rate[5.9873693923837885e-06]
+Time: 4m 7s
+Train Loss: 298.634
+Val   Loss: 1602.729
+Epoch: 101 learning rate[5.9873693923837885e-06]
+Time: 4m 9s
+Train Loss: 295.766
+Val   Loss: 1656.853
+Epoch: 102 learning rate[5.9873693923837885e-06]
+Time: 4m 9s
+Train Loss: 296.047
+Val   Loss: 1675.167
+Epoch: 103 learning rate[5.688000922764599e-06]
+Time: 4m 9s
+Train Loss: 281.770
+Val   Loss: 1604.888
+Epoch: 104 learning rate[5.688000922764599e-06]
+Time: 4m 12s
+Train Loss: 279.618
+Val   Loss: 1620.755
+Epoch: 105 learning rate[5.688000922764599e-06]
+Time: 4m 10s
+Train Loss: 278.968
+Val   Loss: 1614.931
+Epoch: 106 learning rate[5.688000922764599e-06]
+Time: 4m 8s
+Train Loss: 271.216
+Val   Loss: 1635.191
+Epoch: 107 learning rate[5.688000922764599e-06]
+Time: 4m 9s
+Train Loss: 279.993
+Val   Loss: 1600.194
+Epoch: 108 learning rate[5.403600876626369e-06]
+Time: 4m 8s
+Train Loss: 268.396
+Val   Loss: 1608.136
+Epoch: 109 learning rate[5.403600876626369e-06]
+Time: 4m 7s
+Train Loss: 267.028
+Val   Loss: 1597.477
+Epoch: 110 learning rate[5.403600876626369e-06]
+Time: 4m 9s
+Train Loss: 255.657
+Val   Loss: 1667.635
+Epoch: 111 learning rate[5.403600876626369e-06]
+Time: 4m 8s
+Train Loss: 256.573
+Val   Loss: 1609.425
+Epoch: 112 learning rate[5.403600876626369e-06]
+Time: 4m 8s
+Train Loss: 255.122
+Val   Loss: 1567.998
+Epoch: 113 learning rate[5.13342083279505e-06]
+Time: 4m 10s
+Train Loss: 251.356
+Val   Loss: 1621.899
+Epoch: 114 learning rate[5.13342083279505e-06]
+Time: 4m 7s
+Train Loss: 240.367
+Val   Loss: 1592.624
+Epoch: 115 learning rate[5.13342083279505e-06]
+Time: 4m 10s
+Train Loss: 243.543
+Val   Loss: 1616.095
+Epoch: 116 learning rate[5.13342083279505e-06]
+Time: 4m 16s
+Train Loss: 240.958
+Val   Loss: 1612.788
+Epoch: 117 learning rate[5.13342083279505e-06]
+Time: 4m 9s
+Train Loss: 235.879
+Val   Loss: 1611.779
+Epoch: 118 learning rate[4.876749791155297e-06]
+Time: 4m 12s
+Train Loss: 235.596
+Val   Loss: 1594.328
+Epoch: 119 learning rate[4.876749791155297e-06]
+Time: 4m 10s
+Train Loss: 234.633
+Val   Loss: 1654.655
+Epoch: 120 learning rate[4.876749791155297e-06]
+Time: 4m 8s
+Train Loss: 229.610
+Val   Loss: 1595.703
+Epoch: 121 learning rate[4.876749791155297e-06]
+Time: 4m 12s
+Train Loss: 232.631
+Val   Loss: 1585.897
+Epoch: 122 learning rate[4.876749791155297e-06]
+Time: 4m 8s
+Train Loss: 228.357
+Val   Loss: 1647.165
+Epoch: 123 learning rate[4.6329123015975315e-06]
+Time: 4m 9s
+Train Loss: 218.732
+Val   Loss: 1615.035
+Epoch: 124 learning rate[4.6329123015975315e-06]
+Time: 4m 8s
+Train Loss: 222.433
+Val   Loss: 1587.125
+Epoch: 125 learning rate[4.6329123015975315e-06]
+Time: 4m 10s
+Train Loss: 221.690
+Val   Loss: 1605.180
+Epoch: 126 learning rate[4.6329123015975315e-06]
+Time: 4m 11s
+Train Loss: 215.506
+Val   Loss: 1626.751
+Epoch: 127 learning rate[4.6329123015975315e-06]
+Time: 4m 10s
+Train Loss: 212.710
+Val   Loss: 1621.049
+Epoch: 128 learning rate[4.401266686517655e-06]
+Time: 4m 10s
+Train Loss: 209.238
+Val   Loss: 1616.663
+Epoch: 129 learning rate[4.401266686517655e-06]
+Time: 4m 8s
+Train Loss: 207.363
+Val   Loss: 1619.357
+Epoch: 130 learning rate[4.401266686517655e-06]
+Time: 4m 10s
+Train Loss: 202.588
+Val   Loss: 1595.228
+Epoch: 131 learning rate[4.401266686517655e-06]
+Time: 4m 14s
+Train Loss: 202.154
+Val   Loss: 1594.405
+Epoch: 132 learning rate[4.401266686517655e-06]
+Time: 4m 8s
+Train Loss: 200.534
+Val   Loss: 1604.782
+Epoch: 133 learning rate[4.181203352191772e-06]
+Time: 4m 10s
+Train Loss: 202.272
+Val   Loss: 1604.041
+Epoch: 134 learning rate[4.181203352191772e-06]
+Time: 4m 7s
+Train Loss: 194.273
+Val   Loss: 1636.959
+Epoch: 135 learning rate[4.181203352191772e-06]
+Time: 4m 10s
+Train Loss: 195.954
+Val   Loss: 1626.336
+Epoch: 136 learning rate[4.181203352191772e-06]
+Time: 4m 10s
+Train Loss: 203.786
+Val   Loss: 1607.931
+Epoch: 137 learning rate[4.181203352191772e-06]
+Time: 4m 9s
+Train Loss: 191.866
+Val   Loss: 1607.234
+Epoch: 138 learning rate[3.972143184582183e-06]
+Time: 4m 9s
+Train Loss: 189.574
+Val   Loss: 1611.688
+Epoch: 139 learning rate[3.972143184582183e-06]
+Time: 4m 10s
+Train Loss: 187.715
+Val   Loss: 1596.072
+Epoch: 140 learning rate[3.972143184582183e-06]
+Time: 4m 8s
+Train Loss: 193.652
+Val   Loss: 1618.148
+Epoch: 141 learning rate[3.972143184582183e-06]
+Time: 4m 8s
+Train Loss: 194.321
+Val   Loss: 1660.112
+Epoch: 142 learning rate[3.972143184582183e-06]
+Time: 4m 9s
+Train Loss: 187.420
+Val   Loss: 1632.267
+Epoch: 143 learning rate[3.773536025353074e-06]
+Time: 4m 8s
+Train Loss: 184.035
+Val   Loss: 1591.944
+Epoch: 144 learning rate[3.773536025353074e-06]
+Time: 4m 9s
+Train Loss: 182.237
+Val   Loss: 1609.705
+Epoch: 145 learning rate[3.773536025353074e-06]
+Time: 4m 11s
+Train Loss: 179.106
+Val   Loss: 1613.644
+Epoch: 146 learning rate[3.773536025353074e-06]
+Time: 4m 10s
+Train Loss: 176.240
+Val   Loss: 1615.159
+Epoch: 147 learning rate[3.773536025353074e-06]
+Time: 4m 12s
+Train Loss: 172.914
+Val   Loss: 1596.036
+Epoch: 148 learning rate[3.58485922408542e-06]
+Time: 4m 7s
+Train Loss: 178.447
+Val   Loss: 1581.805
+Epoch: 149 learning rate[3.58485922408542e-06]
+Time: 4m 8s
+Train Loss: 178.922
+Val   Loss: 1608.709
+Epoch: 150 learning rate[3.58485922408542e-06]
+Time: 4m 6s
+Train Loss: 171.878
+Val   Loss: 1697.989
+Epoch: 151 learning rate[3.58485922408542e-06]
+Time: 4m 9s
+Train Loss: 172.523
+Val   Loss: 1627.660
+Epoch: 152 learning rate[3.58485922408542e-06]
+Time: 4m 7s
+Train Loss: 168.605
+Val   Loss: 1602.515
+Epoch: 153 learning rate[3.405616262881149e-06]
+Time: 4m 7s
+Train Loss: 170.429
+Val   Loss: 1607.805
+Epoch: 154 learning rate[3.405616262881149e-06]
+Time: 4m 8s
+Train Loss: 168.370
+Val   Loss: 1604.786
+Epoch: 155 learning rate[3.405616262881149e-06]
+Time: 4m 8s
+Train Loss: 166.426
+Val   Loss: 1597.671
+Epoch: 156 learning rate[3.405616262881149e-06]
+Time: 4m 6s
+Train Loss: 166.663
+Val   Loss: 1577.017
+Epoch: 157 learning rate[3.405616262881149e-06]
+Time: 4m 11s
+Train Loss: 167.152
+Val   Loss: 1619.725
+Epoch: 158 learning rate[3.2353354497370914e-06]
+Time: 4m 9s
+Train Loss: 164.385
+Val   Loss: 1611.554
+Epoch: 159 learning rate[3.2353354497370914e-06]
+Time: 4m 7s
+Train Loss: 161.612
+Val   Loss: 1614.456
+Epoch: 160 learning rate[3.2353354497370914e-06]
+Time: 4m 9s
+Train Loss: 159.740
+Val   Loss: 1585.382
+Epoch: 161 learning rate[3.2353354497370914e-06]
+Time: 4m 10s
+Train Loss: 160.468
+Val   Loss: 1595.628
+Epoch: 162 learning rate[3.2353354497370914e-06]
+Time: 4m 7s
+Train Loss: 156.567
+Val   Loss: 1645.348
+Epoch: 163 learning rate[3.0735686772502367e-06]
+Time: 4m 11s
+Train Loss: 154.374
+Val   Loss: 1590.850
+Epoch: 164 learning rate[3.0735686772502367e-06]
+Time: 4m 9s
+Train Loss: 156.483
+Val   Loss: 1583.544
+Epoch: 165 learning rate[3.0735686772502367e-06]
+Time: 4m 6s
+Train Loss: 152.267
+Val   Loss: 1615.998
+Epoch: 166 learning rate[3.0735686772502367e-06]
+Time: 4m 5s
+Train Loss: 151.515
+Val   Loss: 1596.408
+Epoch: 167 learning rate[3.0735686772502367e-06]
+Time: 4m 10s
+Train Loss: 152.568
+Val   Loss: 1633.436
+Epoch: 168 learning rate[2.9198902433877247e-06]
+Time: 4m 10s
+Train Loss: 150.627
+Val   Loss: 1617.693
+Epoch: 169 learning rate[2.9198902433877247e-06]
+Time: 4m 9s
+Train Loss: 148.911
+Val   Loss: 1577.424
+Epoch: 170 learning rate[2.9198902433877247e-06]
+Time: 4m 9s
+Train Loss: 149.636
+Val   Loss: 1602.330
+Epoch: 171 learning rate[2.9198902433877247e-06]
+Time: 4m 10s
+Train Loss: 148.367
+Val   Loss: 1602.187
+Epoch: 172 learning rate[2.9198902433877247e-06]
+Time: 4m 9s
+Train Loss: 147.662
+Val   Loss: 1612.766
+Epoch: 173 learning rate[2.7738957312183385e-06]
+Time: 4m 8s
+Train Loss: 146.686
+Val   Loss: 1596.804
+Epoch: 174 learning rate[2.7738957312183385e-06]
+Time: 4m 9s
+Train Loss: 145.369
+Val   Loss: 1608.266
+Epoch: 175 learning rate[2.7738957312183385e-06]
+Time: 4m 7s
+Train Loss: 142.449
+Val   Loss: 1573.607
+Epoch: 176 learning rate[2.7738957312183385e-06]
+Time: 4m 10s
+Train Loss: 141.890
+Val   Loss: 1604.687
+Epoch: 177 learning rate[2.7738957312183385e-06]
+Time: 4m 6s
+Train Loss: 140.309
+Val   Loss: 1635.071
+Epoch: 178 learning rate[2.6352009446574215e-06]
+Time: 4m 7s
+Train Loss: 139.828
+Val   Loss: 1623.871
+Epoch: 179 learning rate[2.6352009446574215e-06]
+Time: 4m 8s
+Train Loss: 141.430
+Val   Loss: 1657.794
+Epoch: 180 learning rate[2.6352009446574215e-06]
+Time: 4m 6s
+Train Loss: 138.984
+Val   Loss: 1618.900
+Epoch: 181 learning rate[2.6352009446574215e-06]
+Time: 4m 9s
+Train Loss: 139.137
+Val   Loss: 1594.479
+Epoch: 182 learning rate[2.6352009446574215e-06]
+Time: 4m 4s
+Train Loss: 139.147
+Val   Loss: 1620.854
+Epoch: 183 learning rate[2.5034408974245503e-06]
+Time: 4m 8s
+Train Loss: 141.642
+Val   Loss: 1581.389
+Epoch: 184 learning rate[2.5034408974245503e-06]
+Time: 4m 6s
+Train Loss: 134.865
+Val   Loss: 1586.855
+Epoch: 185 learning rate[2.5034408974245503e-06]
+Time: 4m 4s
+Train Loss: 135.864
+Val   Loss: 1598.053
+Epoch: 186 learning rate[2.5034408974245503e-06]
+Time: 4m 5s
+Train Loss: 134.252
+Val   Loss: 1625.114
+Epoch: 187 learning rate[2.5034408974245503e-06]
+Time: 4m 7s
+Train Loss: 136.506
+Val   Loss: 1645.089
+Epoch: 188 learning rate[2.378268852553323e-06]
+Time: 4m 9s
+Train Loss: 135.872
+Val   Loss: 1609.899
+Epoch: 189 learning rate[2.378268852553323e-06]
+Time: 4m 7s
+Train Loss: 133.489
+Val   Loss: 1635.955
+Epoch: 190 learning rate[2.378268852553323e-06]
+Time: 4m 6s
+Train Loss: 134.473
+Val   Loss: 1626.314
+Epoch: 191 learning rate[2.378268852553323e-06]
+Time: 4m 6s
+Train Loss: 130.433
+Val   Loss: 1600.002
+Epoch: 192 learning rate[2.378268852553323e-06]
+Time: 4m 9s
+Train Loss: 132.089
+Val   Loss: 1578.117
+Epoch: 193 learning rate[2.2593554099256565e-06]
+Time: 4m 8s
+Train Loss: 131.338
+Val   Loss: 1601.060
+Epoch: 194 learning rate[2.2593554099256565e-06]
+Time: 4m 5s
+Train Loss: 130.198
+Val   Loss: 1619.680
+Epoch: 195 learning rate[2.2593554099256565e-06]
+Time: 4m 7s
+Train Loss: 128.193
+Val   Loss: 1598.209
+Epoch: 196 learning rate[2.2593554099256565e-06]
+Time: 4m 8s
+Train Loss: 128.930
+Val   Loss: 1623.036
+Epoch: 197 learning rate[2.2593554099256565e-06]
+Time: 4m 7s
+Train Loss: 127.657
+Val   Loss: 1600.240
+Epoch: 198 learning rate[2.1463876394293738e-06]
+Time: 4m 7s
+Train Loss: 127.574
+Val   Loss: 1598.501
+Epoch: 199 learning rate[2.1463876394293738e-06]
+Time: 4m 10s
+Train Loss: 126.155
+Val   Loss: 1580.770
+Epoch: 200 learning rate[2.1463876394293738e-06]
+Time: 4m 8s
+Train Loss: 126.334
+Val   Loss: 1611.430
+Epoch: 201 learning rate[2.1463876394293738e-06]
+Time: 4m 9s
+Train Loss: 126.415
+Val   Loss: 1596.445
+Epoch: 202 learning rate[2.1463876394293738e-06]
+Time: 4m 7s
+Train Loss: 127.249
+Val   Loss: 1627.015
+Epoch: 203 learning rate[2.0390682574579048e-06]
+Time: 4m 11s
+Train Loss: 125.541
+Val   Loss: 1616.617
+Epoch: 204 learning rate[2.0390682574579048e-06]
+Time: 4m 9s
+Train Loss: 121.458
+Val   Loss: 1588.768
+Epoch: 205 learning rate[2.0390682574579048e-06]
+Time: 4m 8s
+Train Loss: 122.179
+Val   Loss: 1611.669
+Epoch: 206 learning rate[2.0390682574579048e-06]
+Time: 4m 8s
+Train Loss: 119.824
+Val   Loss: 1637.182
+Epoch: 207 learning rate[2.0390682574579048e-06]
+Time: 4m 9s
+Train Loss: 119.310
+Val   Loss: 1612.292
+Epoch: 208 learning rate[1.9371148445850093e-06]
+Time: 4m 10s
+Train Loss: 121.638
+Val   Loss: 1597.689
+Epoch: 209 learning rate[1.9371148445850093e-06]
+Time: 4m 10s
+Train Loss: 121.698
+Val   Loss: 1635.407
+Epoch: 210 learning rate[1.9371148445850093e-06]
+Time: 4m 9s
+Train Loss: 122.743
+Val   Loss: 1613.719
+Epoch: 211 learning rate[1.9371148445850093e-06]
+Time: 4m 10s
+Train Loss: 119.277
+Val   Loss: 1624.303
+Epoch: 212 learning rate[1.9371148445850093e-06]
+Time: 4m 6s
+Train Loss: 119.055
+Val   Loss: 1603.416
+Epoch: 213 learning rate[1.8402591023557588e-06]
+Time: 4m 8s
+Train Loss: 119.298
+Val   Loss: 1628.609
+Epoch: 214 learning rate[1.8402591023557588e-06]
+Time: 4m 8s
+Train Loss: 117.622
+Val   Loss: 1614.802
+Epoch: 215 learning rate[1.8402591023557588e-06]
+Time: 4m 8s
+Train Loss: 117.513
+Val   Loss: 1633.122
+Epoch: 216 learning rate[1.8402591023557588e-06]
+Time: 4m 9s
+Train Loss: 116.046
+Val   Loss: 1580.487
+Epoch: 217 learning rate[1.8402591023557588e-06]
+Time: 4m 8s
+Train Loss: 119.065
+Val   Loss: 1583.549
+Epoch: 218 learning rate[1.7482461472379708e-06]
+Time: 4m 7s
+Train Loss: 116.389
+Val   Loss: 1608.240
+Epoch: 219 learning rate[1.7482461472379708e-06]
+Time: 4m 6s
+Train Loss: 116.615
+Val   Loss: 1596.240
+Epoch: 220 learning rate[1.7482461472379708e-06]
+Time: 4m 9s
+Train Loss: 117.813
+Val   Loss: 1615.246
+Epoch: 221 learning rate[1.7482461472379708e-06]
+Time: 4m 8s
+Train Loss: 112.294
+Val   Loss: 1586.101
+Epoch: 222 learning rate[1.7482461472379708e-06]
+Time: 4m 7s
+Train Loss: 113.165
+Val   Loss: 1589.572
+Epoch: 223 learning rate[1.660833839876072e-06]
+Time: 4m 7s
+Train Loss: 113.818
+Val   Loss: 1625.077
+Epoch: 224 learning rate[1.660833839876072e-06]
+Time: 4m 6s
+Train Loss: 113.543
+Val   Loss: 1601.719
+Epoch: 225 learning rate[1.660833839876072e-06]
+Time: 4m 9s
+Train Loss: 114.624
+Val   Loss: 1621.012
+Epoch: 226 learning rate[1.660833839876072e-06]
+Time: 4m 8s
+Train Loss: 110.783
+Val   Loss: 1608.480
+Epoch: 227 learning rate[1.660833839876072e-06]
+Time: 4m 9s
+Train Loss: 113.626
+Val   Loss: 1603.455
+Epoch: 228 learning rate[1.5777921478822684e-06]
+Time: 4m 8s
+Train Loss: 110.843
+Val   Loss: 1613.183
+Epoch: 229 learning rate[1.5777921478822684e-06]
+Time: 4m 7s
+Train Loss: 110.079
+Val   Loss: 1602.013
+Epoch: 230 learning rate[1.5777921478822684e-06]
+Time: 4m 7s
+Train Loss: 108.501
+Val   Loss: 1607.903
+Epoch: 231 learning rate[1.5777921478822684e-06]
+Time: 4m 8s
+Train Loss: 111.146
+Val   Loss: 1619.711
+Epoch: 232 learning rate[1.5777921478822684e-06]
+Time: 4m 8s
+Train Loss: 113.665
+Val   Loss: 1619.742
+Epoch: 233 learning rate[1.4989025404881549e-06]
+Time: 4m 6s
+Train Loss: 112.266
+Val   Loss: 1596.823
+Epoch: 234 learning rate[1.4989025404881549e-06]
+Time: 4m 8s
+Train Loss: 110.767
+Val   Loss: 1586.493
+Epoch: 235 learning rate[1.4989025404881549e-06]
+Time: 4m 5s
+Train Loss: 110.981
+Val   Loss: 1611.909
+Epoch: 236 learning rate[1.4989025404881549e-06]
+Time: 4m 5s
+Train Loss: 110.091
+Val   Loss: 1595.603
+Epoch: 237 learning rate[1.4989025404881549e-06]
+Time: 4m 7s
+Train Loss: 110.470
+Val   Loss: 1604.198
+Epoch: 238 learning rate[1.423957413463747e-06]
+Time: 4m 7s
+Train Loss: 108.491
+Val   Loss: 1627.052
+Epoch: 239 learning rate[1.423957413463747e-06]
+Time: 4m 6s
+Train Loss: 107.606
+Val   Loss: 1601.924
+Epoch: 240 learning rate[1.423957413463747e-06]
+Time: 4m 8s
+Train Loss: 111.535
+Val   Loss: 1602.965
+Epoch: 241 learning rate[1.423957413463747e-06]
+Time: 4m 8s
+Train Loss: 107.815
+Val   Loss: 1622.420
+Epoch: 242 learning rate[1.423957413463747e-06]
+Time: 4m 6s
+Train Loss: 107.167
+Val   Loss: 1588.687
+Epoch: 243 learning rate[1.3527595427905595e-06]
+Time: 4m 8s
+Train Loss: 108.619
+Val   Loss: 1595.546
+Epoch: 244 learning rate[1.3527595427905595e-06]
+Time: 4m 15s
+Train Loss: 105.609
+Val   Loss: 1596.240
+Epoch: 245 learning rate[1.3527595427905595e-06]
+Time: 4m 8s
+Train Loss: 105.043
+Val   Loss: 1612.904
+Epoch: 246 learning rate[1.3527595427905595e-06]
+Time: 4m 10s
+Train Loss: 104.300
+Val   Loss: 1623.040
+Epoch: 247 learning rate[1.3527595427905595e-06]
+Time: 4m 11s
+Train Loss: 105.067
+Val   Loss: 1605.459
+Epoch: 248 learning rate[1.2851215656510316e-06]
+Time: 4m 9s
+Train Loss: 105.484
+Val   Loss: 1622.367
+Epoch: 249 learning rate[1.2851215656510316e-06]
+Time: 4m 11s
+Train Loss: 108.057
+Val   Loss: 1619.247
+Epoch: 250 learning rate[1.2851215656510316e-06]
+Time: 4m 9s
+Train Loss: 107.129
+Val   Loss: 1609.570
+Epoch: 251 learning rate[1.2851215656510316e-06]
+Time: 4m 14s
+Train Loss: 103.085
+Val   Loss: 1611.541
+Epoch: 252 learning rate[1.2851215656510316e-06]
+Time: 4m 12s
+Train Loss: 102.095
+Val   Loss: 1598.273
+Epoch: 253 learning rate[1.22086548736848e-06]
+Time: 4m 9s
+Train Loss: 103.283
+Val   Loss: 1604.456
+Epoch: 254 learning rate[1.22086548736848e-06]
+Time: 4m 12s
+Train Loss: 103.236
+Val   Loss: 1621.115
+Epoch: 255 learning rate[1.22086548736848e-06]
+Time: 4m 8s
+Train Loss: 103.644
+Val   Loss: 1612.630
+Epoch: 256 learning rate[1.22086548736848e-06]
+Time: 4m 9s
+Train Loss: 104.176
+Val   Loss: 1610.440
+Epoch: 257 learning rate[1.22086548736848e-06]
+Time: 4m 9s
+Train Loss: 102.664
+Val   Loss: 1608.751
+Epoch: 258 learning rate[1.159822213000056e-06]
+Time: 4m 8s
+Train Loss: 106.504
+Val   Loss: 1601.432
+Epoch: 259 learning rate[1.159822213000056e-06]
+Time: 4m 13s
+Train Loss: 99.864
+Val   Loss: 1602.616
+Epoch: 260 learning rate[1.159822213000056e-06]
+Time: 4m 11s
+Train Loss: 102.080
+Val   Loss: 1597.832
+Epoch: 261 learning rate[1.159822213000056e-06]
+Time: 4m 9s
+Train Loss: 103.803
+Val   Loss: 1630.161
+Epoch: 262 learning rate[1.159822213000056e-06]
+Time: 4m 17s
+Train Loss: 101.443
+Val   Loss: 1596.880
+Epoch: 263 learning rate[1.1018311023500532e-06]
+Time: 4m 12s
+Train Loss: 103.344
+Val   Loss: 1639.599
+Epoch: 264 learning rate[1.1018311023500532e-06]
+Time: 4m 11s
+Train Loss: 102.568
+Val   Loss: 1617.783
+Epoch: 265 learning rate[1.1018311023500532e-06]
+Time: 4m 10s
+Train Loss: 101.188
+Val   Loss: 1609.929
+Epoch: 266 learning rate[1.1018311023500532e-06]
+Time: 4m 7s
+Train Loss: 100.567
+Val   Loss: 1632.992
+Epoch: 267 learning rate[1.1018311023500532e-06]
+Time: 4m 6s
+Train Loss: 98.612
+Val   Loss: 1620.537
+Epoch: 268 learning rate[1.0467395472325506e-06]
+Time: 4m 7s
+Train Loss: 101.772
+Val   Loss: 1601.923
+Epoch: 269 learning rate[1.0467395472325506e-06]
+Time: 4m 9s
+Train Loss: 102.290
+Val   Loss: 1621.524
+Epoch: 270 learning rate[1.0467395472325506e-06]
+Time: 4m 10s
+Train Loss: 99.627
+Val   Loss: 1641.842
+Epoch: 271 learning rate[1.0467395472325506e-06]
+Time: 4m 13s
+Train Loss: 99.344
+Val   Loss: 1614.634
+Epoch: 272 learning rate[1.0467395472325506e-06]
+Time: 4m 7s
+Train Loss: 101.807
+Val   Loss: 1606.079
+Epoch: 273 learning rate[9.944025698709232e-07]
+Time: 4m 10s
+Train Loss: 98.286
+Val   Loss: 1614.513
+Epoch: 274 learning rate[9.944025698709232e-07]
+Time: 4m 10s
+Train Loss: 100.948
+Val   Loss: 1608.556
+Epoch: 275 learning rate[9.944025698709232e-07]
+Time: 4m 9s
+Train Loss: 101.260
+Val   Loss: 1604.193
+Epoch: 276 learning rate[9.944025698709232e-07]
+Time: 4m 13s
+Train Loss: 102.220
+Val   Loss: 1620.412
+Epoch: 277 learning rate[9.944025698709232e-07]
+Time: 4m 9s
+Train Loss: 93.175
+Val   Loss: 1607.722
+Epoch: 278 learning rate[9.44682441377377e-07]
+Time: 4m 10s
+Train Loss: 98.248
+Val   Loss: 1598.789
+Epoch: 279 learning rate[9.44682441377377e-07]
+Time: 4m 15s
+Train Loss: 97.740
+Val   Loss: 1611.294
+Epoch: 280 learning rate[9.44682441377377e-07]
+Time: 4m 12s
+Train Loss: 98.437
+Val   Loss: 1608.728
+Epoch: 281 learning rate[9.44682441377377e-07]
+Time: 4m 10s
+Train Loss: 98.474
+Val   Loss: 1611.500
+Epoch: 282 learning rate[9.44682441377377e-07]
+Time: 4m 10s
+Train Loss: 97.139
+Val   Loss: 1595.196
+Epoch: 283 learning rate[8.974483193085081e-07]
+Time: 4m 7s
+Train Loss: 99.022
+Val   Loss: 1607.998
+Epoch: 284 learning rate[8.974483193085081e-07]
+Time: 4m 11s
+Train Loss: 94.593
+Val   Loss: 1601.646
+Epoch: 285 learning rate[8.974483193085081e-07]
+Time: 4m 9s
+Train Loss: 97.346
+Val   Loss: 1606.466
+Epoch: 286 learning rate[8.974483193085081e-07]
+Time: 4m 11s
+Train Loss: 96.523
+Val   Loss: 1592.070
+Epoch: 287 learning rate[8.974483193085081e-07]
+Time: 4m 8s
+Train Loss: 94.982
+Val   Loss: 1623.421
+Epoch: 288 learning rate[8.525759033430826e-07]
+Time: 4m 8s
+Train Loss: 98.030
+Val   Loss: 1599.724
+Epoch: 289 learning rate[8.525759033430826e-07]
+Time: 4m 8s
+Train Loss: 94.333
+Val   Loss: 1613.160
+Epoch: 290 learning rate[8.525759033430826e-07]
+Time: 4m 12s
+Train Loss: 95.763
+Val   Loss: 1602.048
+Epoch: 291 learning rate[8.525759033430826e-07]
+Time: 4m 9s
+Train Loss: 97.059
+Val   Loss: 1608.627
+Epoch: 292 learning rate[8.525759033430826e-07]
+Time: 4m 8s
+Train Loss: 91.482
+Val   Loss: 1603.607
+Epoch: 293 learning rate[8.099471081759284e-07]
+Time: 4m 10s
+Train Loss: 94.216
+Val   Loss: 1603.501
+Epoch: 294 learning rate[8.099471081759284e-07]
+Time: 4m 7s
+Train Loss: 96.010
+Val   Loss: 1611.769
+Epoch: 295 learning rate[8.099471081759284e-07]
+Time: 4m 7s
+Train Loss: 95.284
+Val   Loss: 1603.599
+Epoch: 296 learning rate[8.099471081759284e-07]
+Time: 4m 6s
+Train Loss: 95.213
+Val   Loss: 1621.326
+Epoch: 297 learning rate[8.099471081759284e-07]
+Time: 4m 12s
+Train Loss: 96.685
+Val   Loss: 1599.890
+Epoch: 298 learning rate[7.69449752767132e-07]
+Time: 4m 9s
+Train Loss: 92.196
+Val   Loss: 1605.149
+Epoch: 299 learning rate[7.69449752767132e-07]
+Time: 4m 9s
+Train Loss: 93.736
+Val   Loss: 1617.715
+Epoch: 300 learning rate[7.69449752767132e-07]
+Time: 4m 8s
+Train Loss: 93.439
+Val   Loss: 1616.257
+Epoch: 301 learning rate[7.69449752767132e-07]
+Time: 4m 9s
+Train Loss: 94.214
+Val   Loss: 1608.048
+Epoch: 302 learning rate[7.69449752767132e-07]
+Time: 4m 7s
+Train Loss: 91.118
+Val   Loss: 1616.255
+Epoch: 303 learning rate[7.309772651287753e-07]
+Time: 4m 12s
+Train Loss: 95.871
+Val   Loss: 1612.550
+Epoch: 304 learning rate[7.309772651287753e-07]
+Time: 4m 10s
+Train Loss: 92.197
+Val   Loss: 1608.489
+Epoch: 305 learning rate[7.309772651287753e-07]
+Time: 4m 8s
+Train Loss: 92.979
+Val   Loss: 1612.897
+Epoch: 306 learning rate[7.309772651287753e-07]
+Time: 4m 7s
+Train Loss: 91.124
+Val   Loss: 1620.017
+Epoch: 307 learning rate[7.309772651287753e-07]
+Time: 4m 10s
+Train Loss: 93.850
+Val   Loss: 1602.988
+Epoch: 308 learning rate[6.944284018723365e-07]
+Time: 4m 9s
+Train Loss: 91.224
+Val   Loss: 1626.412
+Epoch: 309 learning rate[6.944284018723365e-07]
+Time: 4m 9s
+Train Loss: 90.114
+Val   Loss: 1606.204
+Epoch: 310 learning rate[6.944284018723365e-07]
+Time: 4m 9s
+Train Loss: 89.313
+Val   Loss: 1614.796
+Epoch: 311 learning rate[6.944284018723365e-07]
+Time: 4m 9s
+Train Loss: 90.788
+Val   Loss: 1611.017
+Epoch: 312 learning rate[6.944284018723365e-07]
+Time: 4m 10s
+Train Loss: 90.875
+Val   Loss: 1621.699
+Epoch: 313 learning rate[6.597069817787197e-07]
+Time: 4m 8s
+Train Loss: 94.881
+Val   Loss: 1599.130
+Epoch: 314 learning rate[6.597069817787197e-07]
+Time: 4m 8s
+Train Loss: 90.886
+Val   Loss: 1613.896
+Epoch: 315 learning rate[6.597069817787197e-07]
+Time: 4m 7s
+Train Loss: 89.474
+Val   Loss: 1609.202
+Epoch: 316 learning rate[6.597069817787197e-07]
+Time: 4m 8s
+Train Loss: 87.878
+Val   Loss: 1610.509
+Epoch: 317 learning rate[6.597069817787197e-07]
+Time: 4m 9s
+Train Loss: 91.243
+Val   Loss: 1616.098
+Epoch: 318 learning rate[6.267216326897837e-07]
+Time: 4m 8s
+Train Loss: 91.149
+Val   Loss: 1614.119
+Epoch: 319 learning rate[6.267216326897837e-07]
+Time: 4m 8s
+Train Loss: 91.810
+Val   Loss: 1596.854
+Epoch: 320 learning rate[6.267216326897837e-07]
+Time: 4m 12s
+Train Loss: 95.344
+Val   Loss: 1628.804
+Epoch: 321 learning rate[6.267216326897837e-07]
+Time: 4m 8s
+Train Loss: 91.542
+Val   Loss: 1610.706
+Epoch: 322 learning rate[6.267216326897837e-07]
+Time: 4m 8s
+Train Loss: 90.826
+Val   Loss: 1595.688
+Epoch: 323 learning rate[5.953855510552945e-07]
+Time: 4m 8s
+Train Loss: 88.962
+Val   Loss: 1607.953
+Epoch: 324 learning rate[5.953855510552945e-07]
+Time: 4m 9s
+Train Loss: 87.540
+Val   Loss: 1611.135
+Epoch: 325 learning rate[5.953855510552945e-07]
+Time: 4m 11s
+Train Loss: 89.119
+Val   Loss: 1600.441
+Epoch: 326 learning rate[5.953855510552945e-07]
+Time: 4m 11s
+Train Loss: 87.471
+Val   Loss: 1617.816
+Epoch: 327 learning rate[5.953855510552945e-07]
+Time: 4m 7s
+Train Loss: 90.788
+Val   Loss: 1618.060
+Epoch: 328 learning rate[5.656162735025297e-07]
+Time: 4m 11s
+Train Loss: 89.340
+Val   Loss: 1613.012
+Epoch: 329 learning rate[5.656162735025297e-07]
+Time: 4m 6s
+Train Loss: 90.205
+Val   Loss: 1616.846
+Epoch: 330 learning rate[5.656162735025297e-07]
+Time: 4m 13s
+Train Loss: 92.525
+Val   Loss: 1615.556
+Epoch: 331 learning rate[5.656162735025297e-07]
+Time: 4m 7s
+Train Loss: 91.630
+Val   Loss: 1611.894
+Epoch: 332 learning rate[5.656162735025297e-07]
+Time: 4m 12s
+Train Loss: 87.702
+Val   Loss: 1616.971
+Epoch: 333 learning rate[5.373354598274032e-07]
+Time: 4m 13s
+Train Loss: 90.335
+Val   Loss: 1629.031
+Epoch: 334 learning rate[5.373354598274032e-07]
+Time: 4m 7s
+Train Loss: 90.084
+Val   Loss: 1616.021
+Epoch: 335 learning rate[5.373354598274032e-07]
+Time: 4m 10s
+Train Loss: 89.670
+Val   Loss: 1617.087
+Epoch: 336 learning rate[5.373354598274032e-07]
+Time: 4m 10s
+Train Loss: 89.947
+Val   Loss: 1620.564
+Epoch: 337 learning rate[5.373354598274032e-07]
+Time: 4m 10s
+Train Loss: 89.455
+Val   Loss: 1604.523
+Epoch: 338 learning rate[5.10468686836033e-07]
+Time: 4m 12s
+Train Loss: 87.361
+Val   Loss: 1615.609
+Epoch: 339 learning rate[5.10468686836033e-07]
+Time: 4m 10s
+Train Loss: 90.477
+Val   Loss: 1609.709
+Epoch: 340 learning rate[5.10468686836033e-07]
+Time: 4m 10s
+Train Loss: 90.349
+Val   Loss: 1625.371
+Epoch: 341 learning rate[5.10468686836033e-07]
+Time: 4m 11s
+Train Loss: 89.963
+Val   Loss: 1611.276
+Epoch: 342 learning rate[5.10468686836033e-07]
+Time: 4m 9s
+Train Loss: 89.084
+Val   Loss: 1604.781
+Epoch: 343 learning rate[4.849452524942313e-07]
+Time: 4m 8s
+Train Loss: 89.184
+Val   Loss: 1605.347
+Epoch: 344 learning rate[4.849452524942313e-07]
+Time: 4m 11s
+Train Loss: 88.827
+Val   Loss: 1618.539
+Epoch: 345 learning rate[4.849452524942313e-07]
+Time: 4m 8s
+Train Loss: 88.771
+Val   Loss: 1606.122
+Epoch: 346 learning rate[4.849452524942313e-07]
+Time: 4m 10s
+Train Loss: 88.251
+Val   Loss: 1612.124
+Epoch: 347 learning rate[4.849452524942313e-07]
+Time: 4m 9s
+Train Loss: 86.901
+Val   Loss: 1612.683
+Epoch: 348 learning rate[4.606979898695197e-07]
+Time: 4m 10s
+Train Loss: 87.196
+Val   Loss: 1612.739
+Epoch: 349 learning rate[4.606979898695197e-07]
+Time: 4m 10s
+Train Loss: 86.709
+Val   Loss: 1615.986
+Epoch: 350 learning rate[4.606979898695197e-07]
+Time: 4m 15s
+Train Loss: 88.958
+Val   Loss: 1602.898
+Epoch: 351 learning rate[4.606979898695197e-07]
+Time: 4m 7s
+Train Loss: 85.597
+Val   Loss: 1610.577
+Epoch: 352 learning rate[4.606979898695197e-07]
+Time: 4m 12s
+Train Loss: 87.360
+Val   Loss: 1607.592
+Epoch: 353 learning rate[4.376630903760437e-07]
+Time: 4m 11s
+Train Loss: 90.995
+Val   Loss: 1611.659
+Epoch: 354 learning rate[4.376630903760437e-07]
+Time: 4m 10s
+Train Loss: 86.523
+Val   Loss: 1615.328
+Epoch: 355 learning rate[4.376630903760437e-07]
+Time: 4m 12s
+Train Loss: 87.322
+Val   Loss: 1620.421
+Epoch: 356 learning rate[4.376630903760437e-07]
+Time: 4m 10s
+Train Loss: 86.911
+Val   Loss: 1614.604
+Epoch: 357 learning rate[4.376630903760437e-07]
+Time: 4m 9s
+Train Loss: 88.205
+Val   Loss: 1601.580
+Epoch: 358 learning rate[4.157799358572415e-07]
+Time: 4m 9s
+Train Loss: 90.624
+Val   Loss: 1603.104
+Epoch: 359 learning rate[4.157799358572415e-07]
+Time: 4m 11s
+Train Loss: 86.328
+Val   Loss: 1618.048
+Epoch: 360 learning rate[4.157799358572415e-07]
+Time: 4m 11s
+Train Loss: 86.382
+Val   Loss: 1616.966
+Epoch: 361 learning rate[4.157799358572415e-07]
+Time: 4m 10s
+Train Loss: 87.340
+Val   Loss: 1626.837
+Epoch: 362 learning rate[4.157799358572415e-07]
+Time: 4m 9s
+Train Loss: 85.045
+Val   Loss: 1608.735
+Epoch: 363 learning rate[3.949909390643794e-07]
+Time: 4m 7s
+Train Loss: 87.408
+Val   Loss: 1606.973
+Epoch: 364 learning rate[3.949909390643794e-07]
+Time: 4m 9s
+Train Loss: 86.693
+Val   Loss: 1611.952
+Epoch: 365 learning rate[3.949909390643794e-07]
+Time: 4m 10s
+Train Loss: 87.594
+Val   Loss: 1604.448
+Epoch: 366 learning rate[3.949909390643794e-07]
+Time: 4m 10s
+Train Loss: 86.437
+Val   Loss: 1609.028
+Epoch: 367 learning rate[3.949909390643794e-07]
+Time: 4m 10s
+Train Loss: 83.880
+Val   Loss: 1618.393
+Epoch: 368 learning rate[3.752413921111604e-07]
+Time: 4m 11s
+Train Loss: 85.832
+Val   Loss: 1605.683
+Epoch: 369 learning rate[3.752413921111604e-07]
+Time: 4m 12s
+Train Loss: 86.998
+Val   Loss: 1603.100
+Epoch: 370 learning rate[3.752413921111604e-07]
+Time: 4m 9s
+Train Loss: 86.139
+Val   Loss: 1616.678
+Epoch: 371 learning rate[3.752413921111604e-07]
+Time: 4m 11s
+Train Loss: 86.597
+Val   Loss: 1627.143
+Epoch: 372 learning rate[3.752413921111604e-07]
+Time: 4m 10s
+Train Loss: 85.416
+Val   Loss: 1607.410
+Epoch: 373 learning rate[3.564793225056024e-07]
+Time: 4m 11s
+Train Loss: 84.285
+Val   Loss: 1619.701
+Epoch: 374 learning rate[3.564793225056024e-07]
+Time: 4m 14s
+Train Loss: 85.996
+Val   Loss: 1615.733
+Epoch: 375 learning rate[3.564793225056024e-07]
+Time: 4m 9s
+Train Loss: 86.659
+Val   Loss: 1619.869
+Epoch: 376 learning rate[3.564793225056024e-07]
+Time: 4m 12s
+Train Loss: 88.617
+Val   Loss: 1608.630
+Epoch: 377 learning rate[3.564793225056024e-07]
+Time: 4m 9s
+Train Loss: 86.937
+Val   Loss: 1609.148
+Epoch: 378 learning rate[3.3865535638032227e-07]
+Time: 4m 7s
+Train Loss: 87.632
+Val   Loss: 1619.937
+Epoch: 379 learning rate[3.3865535638032227e-07]
+Time: 4m 7s
+Train Loss: 88.486
+Val   Loss: 1605.189
+Epoch: 380 learning rate[3.3865535638032227e-07]
+Time: 4m 5s
+Train Loss: 84.213
+Val   Loss: 1612.925
+Epoch: 381 learning rate[3.3865535638032227e-07]
+Time: 4m 7s
+Train Loss: 88.052
+Val   Loss: 1609.321
+Epoch: 382 learning rate[3.3865535638032227e-07]
+Time: 4m 8s
+Train Loss: 86.498
+Val   Loss: 1619.446
+Epoch: 383 learning rate[3.2172258856130614e-07]
+Time: 4m 9s
+Train Loss: 87.212
+Val   Loss: 1628.596
+Epoch: 384 learning rate[3.2172258856130614e-07]
+Time: 4m 9s
+Train Loss: 86.489
+Val   Loss: 1602.079
+Epoch: 385 learning rate[3.2172258856130614e-07]
+Time: 4m 12s
+Train Loss: 85.091
+Val   Loss: 1609.475
+Epoch: 386 learning rate[3.2172258856130614e-07]
+Time: 4m 10s
+Train Loss: 86.492
+Val   Loss: 1618.066
+Epoch: 387 learning rate[3.2172258856130614e-07]
+Time: 4m 11s
+Train Loss: 85.256
+Val   Loss: 1604.075
+Epoch: 388 learning rate[3.056364591332408e-07]
+Time: 4m 8s
+Train Loss: 83.898
+Val   Loss: 1608.747
+Epoch: 389 learning rate[3.056364591332408e-07]
+Time: 4m 8s
+Train Loss: 85.173
+Val   Loss: 1610.794
+Epoch: 390 learning rate[3.056364591332408e-07]
+Time: 4m 9s
+Train Loss: 83.835
+Val   Loss: 1614.724
+Epoch: 391 learning rate[3.056364591332408e-07]
+Time: 4m 12s
+Train Loss: 85.802
+Val   Loss: 1616.185
+Epoch: 392 learning rate[3.056364591332408e-07]
+Time: 4m 8s
+Train Loss: 85.250
+Val   Loss: 1606.764
+Epoch: 393 learning rate[2.9035463617657877e-07]
+Time: 4m 7s
+Train Loss: 85.442
+Val   Loss: 1603.067
+Epoch: 394 learning rate[2.9035463617657877e-07]
+Time: 4m 8s
+Train Loss: 84.534
+Val   Loss: 1615.679
+Epoch: 395 learning rate[2.9035463617657877e-07]
+Time: 4m 10s
+Train Loss: 85.739
+Val   Loss: 1610.247
+Epoch: 396 learning rate[2.9035463617657877e-07]
+Time: 4m 8s
+Train Loss: 84.070
+Val   Loss: 1608.969
+Epoch: 397 learning rate[2.9035463617657877e-07]
+Time: 4m 7s
+Train Loss: 83.495
+Val   Loss: 1612.509
+Epoch: 398 learning rate[2.7583690436774984e-07]
+Time: 4m 8s
+Train Loss: 82.931
+Val   Loss: 1613.019
+Epoch: 399 learning rate[2.7583690436774984e-07]
+Time: 4m 7s
+Train Loss: 83.506
+Val   Loss: 1616.665
+Epoch: 400 learning rate[2.7583690436774984e-07]
+Time: 4m 8s
+Train Loss: 83.883
+Val   Loss: 1615.212
+Epoch: 401 learning rate[2.7583690436774984e-07]
+Time: 4m 14s
+Train Loss: 83.957
+Val   Loss: 1612.405
+Epoch: 402 learning rate[2.7583690436774984e-07]
+Time: 4m 8s
+Train Loss: 86.016
+Val   Loss: 1613.098
+Epoch: 403 learning rate[2.620450591493623e-07]
+Time: 4m 11s
+Train Loss: 83.961
+Val   Loss: 1625.884
+Epoch: 404 learning rate[2.620450591493623e-07]
+Time: 4m 7s
+Train Loss: 84.105
+Val   Loss: 1613.827
+Epoch: 405 learning rate[2.620450591493623e-07]
+Time: 4m 8s
+Train Loss: 83.534
+Val   Loss: 1615.201
+Epoch: 406 learning rate[2.620450591493623e-07]
+Time: 4m 8s
+Train Loss: 82.956
+Val   Loss: 1617.173
+Epoch: 407 learning rate[2.620450591493623e-07]
+Time: 4m 6s
+Train Loss: 85.449
+Val   Loss: 1613.523
+Epoch: 408 learning rate[2.4894280619189417e-07]
+Time: 4m 6s
+Train Loss: 87.177
+Val   Loss: 1619.763
+Epoch: 409 learning rate[2.4894280619189417e-07]
+Time: 4m 9s
+Train Loss: 86.150
+Val   Loss: 1614.153
+Epoch: 410 learning rate[2.4894280619189417e-07]
+Time: 4m 7s
+Train Loss: 84.583
+Val   Loss: 1609.264
+Epoch: 411 learning rate[2.4894280619189417e-07]
+Time: 4m 9s
+Train Loss: 85.284
+Val   Loss: 1617.342
+Epoch: 412 learning rate[2.4894280619189417e-07]
+Time: 4m 4s
+Train Loss: 84.650
+Val   Loss: 1620.914
+Epoch: 413 learning rate[2.3649566588229946e-07]
+Time: 4m 5s
+Train Loss: 83.822
+Val   Loss: 1619.938
+Epoch: 414 learning rate[2.3649566588229946e-07]
+Time: 4m 8s
+Train Loss: 85.256
+Val   Loss: 1607.226
+Epoch: 415 learning rate[2.3649566588229946e-07]
+Time: 4m 6s
+Train Loss: 83.000
+Val   Loss: 1615.289
+Epoch: 416 learning rate[2.3649566588229946e-07]
+Time: 4m 7s
+Train Loss: 83.592
+Val   Loss: 1622.229
+Epoch: 417 learning rate[2.3649566588229946e-07]
+Time: 4m 7s
+Train Loss: 82.877
+Val   Loss: 1614.559
+Epoch: 418 learning rate[2.2467088258818448e-07]
+Time: 4m 9s
+Train Loss: 85.983
+Val   Loss: 1615.603
+Epoch: 419 learning rate[2.2467088258818448e-07]
+Time: 4m 8s
+Train Loss: 83.416
+Val   Loss: 1617.568
+Epoch: 420 learning rate[2.2467088258818448e-07]
+Time: 4m 9s
+Train Loss: 83.445
+Val   Loss: 1625.476
+Epoch: 421 learning rate[2.2467088258818448e-07]
+Time: 4m 11s
+Train Loss: 86.372
+Val   Loss: 1615.531
+Epoch: 422 learning rate[2.2467088258818448e-07]
+Time: 4m 9s
+Train Loss: 83.898
+Val   Loss: 1623.850
+Epoch: 423 learning rate[2.1343733845877524e-07]
+Time: 4m 7s
+Train Loss: 84.445
+Val   Loss: 1610.786
+Epoch: 424 learning rate[2.1343733845877524e-07]
+Time: 4m 12s
+Train Loss: 83.605
+Val   Loss: 1620.511
+Epoch: 425 learning rate[2.1343733845877524e-07]
+Time: 4m 8s
+Train Loss: 85.530
+Val   Loss: 1606.299
+Epoch: 426 learning rate[2.1343733845877524e-07]
+Time: 4m 10s
+Train Loss: 84.589
+Val   Loss: 1616.165
+Epoch: 427 learning rate[2.1343733845877524e-07]
+Time: 4m 8s
+Train Loss: 83.081
+Val   Loss: 1621.285
+Epoch: 428 learning rate[2.0276547153583647e-07]
+Time: 4m 7s
+Train Loss: 87.547
+Val   Loss: 1613.905
+Epoch: 429 learning rate[2.0276547153583647e-07]
+Time: 4m 10s
+Train Loss: 82.630
+Val   Loss: 1620.953
+Epoch: 430 learning rate[2.0276547153583647e-07]
+Time: 4m 6s
+Train Loss: 80.607
+Val   Loss: 1619.944
+Epoch: 431 learning rate[2.0276547153583647e-07]
+Time: 4m 6s
+Train Loss: 80.094
+Val   Loss: 1607.326
+Epoch: 432 learning rate[2.0276547153583647e-07]
+Time: 4m 5s
+Train Loss: 85.272
+Val   Loss: 1616.042
+Epoch: 433 learning rate[1.9262719795904463e-07]
+Time: 4m 6s
+Train Loss: 83.540
+Val   Loss: 1611.126
+Epoch: 434 learning rate[1.9262719795904463e-07]
+Time: 4m 7s
+Train Loss: 81.825
+Val   Loss: 1619.916
+Epoch: 435 learning rate[1.9262719795904463e-07]
+Time: 4m 10s
+Train Loss: 86.651
+Val   Loss: 1628.719
+Epoch: 436 learning rate[1.9262719795904463e-07]
+Time: 4m 11s
+Train Loss: 83.134
+Val   Loss: 1605.538
+Epoch: 437 learning rate[1.9262719795904463e-07]
+Time: 4m 7s
+Train Loss: 81.969
+Val   Loss: 1626.644
+Epoch: 438 learning rate[1.8299583806109238e-07]
+Time: 4m 6s
+Train Loss: 83.464
+Val   Loss: 1624.141
+Epoch: 439 learning rate[1.8299583806109238e-07]
+Time: 4m 6s
+Train Loss: 82.075
+Val   Loss: 1620.351
+Epoch: 440 learning rate[1.8299583806109238e-07]
+Time: 4m 8s
+Train Loss: 83.957
+Val   Loss: 1620.906
+Epoch: 441 learning rate[1.8299583806109238e-07]
+Time: 4m 6s
+Train Loss: 83.129
+Val   Loss: 1614.112
+Epoch: 442 learning rate[1.8299583806109238e-07]
+Time: 4m 7s
+Train Loss: 82.600
+Val   Loss: 1626.133
+Epoch: 443 learning rate[1.7384604615803775e-07]
+Time: 4m 9s
+Train Loss: 81.822
+Val   Loss: 1619.953
+Epoch: 444 learning rate[1.7384604615803775e-07]
+Time: 4m 7s
+Train Loss: 83.606
+Val   Loss: 1623.115
+Epoch: 445 learning rate[1.7384604615803775e-07]
+Time: 4m 10s
+Train Loss: 80.138
+Val   Loss: 1615.675
+Epoch: 446 learning rate[1.7384604615803775e-07]
+Time: 4m 9s
+Train Loss: 80.544
+Val   Loss: 1615.886
+Epoch: 447 learning rate[1.7384604615803775e-07]
+Time: 4m 9s
+Train Loss: 81.305
+Val   Loss: 1622.635
+Epoch: 448 learning rate[1.6515374385013586e-07]
+Time: 4m 6s
+Train Loss: 81.031
+Val   Loss: 1624.516
+Epoch: 449 learning rate[1.6515374385013586e-07]
+Time: 4m 7s
+Train Loss: 83.451
+Val   Loss: 1619.813
+Epoch: 450 learning rate[1.6515374385013586e-07]
+Time: 4m 11s
+Train Loss: 82.720
+Val   Loss: 1614.893
+Epoch: 451 learning rate[1.6515374385013586e-07]
+Time: 4m 13s
+Train Loss: 80.937
+Val   Loss: 1610.619
+Epoch: 452 learning rate[1.6515374385013586e-07]
+Time: 4m 10s
+Train Loss: 81.475
+Val   Loss: 1622.232
+Epoch: 453 learning rate[1.5689605665762907e-07]
+Time: 4m 9s
+Train Loss: 82.089
+Val   Loss: 1619.115
+Epoch: 454 learning rate[1.5689605665762907e-07]
+Time: 4m 7s
+Train Loss: 82.396
+Val   Loss: 1618.226
+Epoch: 455 learning rate[1.5689605665762907e-07]
+Time: 4m 12s
+Train Loss: 83.637
+Val   Loss: 1611.757
+Epoch: 456 learning rate[1.5689605665762907e-07]
+Time: 4m 8s
+Train Loss: 82.009
+Val   Loss: 1611.315
+Epoch: 457 learning rate[1.5689605665762907e-07]
+Time: 4m 7s
+Train Loss: 83.612
+Val   Loss: 1608.867
+Epoch: 458 learning rate[1.490512538247476e-07]
+Time: 4m 6s
+Train Loss: 82.739
+Val   Loss: 1614.554
+Epoch: 459 learning rate[1.490512538247476e-07]
+Time: 4m 10s
+Train Loss: 83.569
+Val   Loss: 1610.783
+Epoch: 460 learning rate[1.490512538247476e-07]
+Time: 4m 10s
+Train Loss: 85.668
+Val   Loss: 1619.606
+Epoch: 461 learning rate[1.490512538247476e-07]
+Time: 4m 10s
+Train Loss: 80.057
+Val   Loss: 1621.059
+Epoch: 462 learning rate[1.490512538247476e-07]
+Time: 4m 12s
+Train Loss: 80.958
+Val   Loss: 1617.743
+Epoch: 463 learning rate[1.4159869113351022e-07]
+Time: 4m 8s
+Train Loss: 81.988
+Val   Loss: 1613.446
+Epoch: 464 learning rate[1.4159869113351022e-07]
+Time: 4m 10s
+Train Loss: 80.427
+Val   Loss: 1610.522
+Epoch: 465 learning rate[1.4159869113351022e-07]
+Time: 4m 7s
+Train Loss: 82.389
+Val   Loss: 1611.517
+Epoch: 466 learning rate[1.4159869113351022e-07]
+Time: 4m 8s
+Train Loss: 82.200
+Val   Loss: 1616.192
+Epoch: 467 learning rate[1.4159869113351022e-07]
+Time: 4m 11s
+Train Loss: 81.218
+Val   Loss: 1609.781
+Epoch: 468 learning rate[1.345187565768347e-07]
+Time: 4m 9s
+Train Loss: 81.289
+Val   Loss: 1618.751
+Epoch: 469 learning rate[1.345187565768347e-07]
+Time: 4m 10s
+Train Loss: 80.896
+Val   Loss: 1607.563
+Epoch: 470 learning rate[1.345187565768347e-07]
+Time: 4m 8s
+Train Loss: 80.067
+Val   Loss: 1609.487
+Epoch: 471 learning rate[1.345187565768347e-07]
+Time: 4m 9s
+Train Loss: 81.855
+Val   Loss: 1615.839
+Epoch: 472 learning rate[1.345187565768347e-07]
+Time: 4m 9s
+Train Loss: 84.319
+Val   Loss: 1605.012
+Epoch: 473 learning rate[1.2779281874799297e-07]
+Time: 4m 9s
+Train Loss: 81.722
+Val   Loss: 1617.632
+Epoch: 474 learning rate[1.2779281874799297e-07]
+Time: 4m 9s
+Train Loss: 82.371
+Val   Loss: 1616.770
+Epoch: 475 learning rate[1.2779281874799297e-07]
+Time: 4m 8s
+Train Loss: 80.994
+Val   Loss: 1616.161
+Epoch: 476 learning rate[1.2779281874799297e-07]
+Time: 4m 10s
+Train Loss: 84.365
+Val   Loss: 1613.019
+Epoch: 477 learning rate[1.2779281874799297e-07]
+Time: 4m 9s
+Train Loss: 80.433
+Val   Loss: 1612.769
+Epoch: 478 learning rate[1.2140317781059332e-07]
+Time: 4m 11s
+Train Loss: 82.792
+Val   Loss: 1616.439
+Epoch: 479 learning rate[1.2140317781059332e-07]
+Time: 4m 7s
+Train Loss: 83.275
+Val   Loss: 1614.281
+Epoch: 480 learning rate[1.2140317781059332e-07]
+Time: 4m 12s
+Train Loss: 80.841
+Val   Loss: 1626.718
+Epoch: 481 learning rate[1.2140317781059332e-07]
+Time: 4m 9s
+Train Loss: 83.021
+Val   Loss: 1609.596
+Epoch: 482 learning rate[1.2140317781059332e-07]
+Time: 4m 8s
+Train Loss: 81.214
+Val   Loss: 1610.437
+Epoch: 483 learning rate[1.1533301892006366e-07]
+Time: 4m 9s
+Train Loss: 80.477
+Val   Loss: 1618.443
+Epoch: 484 learning rate[1.1533301892006366e-07]
+Time: 4m 8s
+Train Loss: 79.813
+Val   Loss: 1617.287
+Epoch: 485 learning rate[1.1533301892006366e-07]
+Time: 4m 9s
+Train Loss: 83.872
+Val   Loss: 1607.053
+Epoch: 486 learning rate[1.1533301892006366e-07]
+Time: 4m 12s
+Train Loss: 81.308
+Val   Loss: 1612.432
+Epoch: 487 learning rate[1.1533301892006366e-07]
+Time: 4m 10s
+Train Loss: 81.808
+Val   Loss: 1618.397
+Epoch: 488 learning rate[1.0956636797406046e-07]
+Time: 4m 8s
+Train Loss: 81.112
+Val   Loss: 1618.824
+Epoch: 489 learning rate[1.0956636797406046e-07]
+Time: 4m 13s
+Train Loss: 83.323
+Val   Loss: 1621.812
+Epoch: 490 learning rate[1.0956636797406046e-07]
+Time: 4m 10s
+Train Loss: 81.620
+Val   Loss: 1619.578
+Epoch: 491 learning rate[1.0956636797406046e-07]
+Time: 4m 8s
+Train Loss: 81.818
+Val   Loss: 1614.469
+Epoch: 492 learning rate[1.0956636797406046e-07]
+Time: 4m 8s
+Train Loss: 81.014
+Val   Loss: 1622.951
+Epoch: 493 learning rate[1.0408804957535743e-07]
+Time: 4m 7s
+Train Loss: 80.397
+Val   Loss: 1611.098
+Epoch: 494 learning rate[1.0408804957535743e-07]
+Time: 4m 7s
+Train Loss: 81.945
+Val   Loss: 1610.911
+Epoch: 495 learning rate[1.0408804957535743e-07]
+Time: 4m 8s
+Train Loss: 81.904
+Val   Loss: 1616.490
+Epoch: 496 learning rate[1.0408804957535743e-07]
+Time: 4m 7s
+Train Loss: 84.868
+Val   Loss: 1602.716
+Epoch: 497 learning rate[1.0408804957535743e-07]
+Time: 4m 6s
+Train Loss: 79.652
+Val   Loss: 1623.621
+Epoch: 498 learning rate[9.888364709658955e-08]
+Time: 4m 10s
+Train Loss: 79.996
+Val   Loss: 1619.233
+Epoch: 499 learning rate[9.888364709658955e-08]
+Time: 4m 9s
+Train Loss: 81.626
+Val   Loss: 1620.585
+Epoch: 500 learning rate[9.888364709658955e-08]
+Time: 4m 10s
+Train Loss: 80.054
+Val   Loss: 1627.893
