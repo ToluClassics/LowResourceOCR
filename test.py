@@ -10,7 +10,12 @@ import numpy as np
 import src.data.preprocess as pp
 
 parser = argparse.ArgumentParser(description="Train a language OCR")
-parser.add_argument("--lang", help="language to train in ", required=True, choices=["eng", "yor", "igbo"])
+parser.add_argument(
+    "--lang",
+    help="language to train in ",
+    required=True,
+    choices=["eng", "yor", "igbo"],
+)
 
 args = parser.parse_args()
 
@@ -20,12 +25,16 @@ with open("config.yaml", "r") as f:
     config = yaml.safe_load(f)
 
 charset = config[f"{args.lang}_charset"]
-tokenizer = Tokenizer(charset, lang=args.lang, max_text_length=config[f'{args.lang}_max_text_len'])
+tokenizer = Tokenizer(
+    charset, lang=args.lang, max_text_length=config[f"{args.lang}_max_text_len"]
+)
 
 print("[INFO] Load Trained Checkpoint model")
 model = make_model(hidden_dim=512, vocab_len=tokenizer.vocab_size)
 model.to(device)
-model.load_state_dict(torch.load(f"run/checkpoint_weights_{args.lang}_trdg.pt", map_location=device))
+model.load_state_dict(
+    torch.load(f"run/checkpoint_weights_{args.lang}_trdg.pt", map_location=device)
+)
 
 transform = T.Compose([T.ToTensor()])
 
@@ -83,7 +92,10 @@ def test(model, test_loader, max_text_length):
                 break
     return predicts, gt, imgs
 
-dataset = DataGenerator(source=config["source"], charset=charset, transform=transform, lang=args.lang)
+
+dataset = DataGenerator(
+    source=config["source"], charset=charset, transform=transform, lang=args.lang
+)
 test_loader = torch.utils.data.DataLoader(
     dataset, batch_size=1, shuffle=True, num_workers=2
 )
@@ -92,7 +104,7 @@ test_loader = torch.utils.data.DataLoader(
 if __name__ == "__main__":
     torch.multiprocessing.freeze_support()
     print("[INFO] Testing Trained Model")
-    predicts, gt, imgs = test(model, test_loader, config[f'{args.lang}_max_text_len'])
+    predicts, gt, imgs = test(model, test_loader, config[f"{args.lang}_max_text_len"])
 
     predicts = list(map(lambda x: x.replace("SOS", "").replace("EOS", ""), predicts))
     gt = list(map(lambda x: x.replace("SOS", "").replace("EOS", ""), gt))
@@ -112,7 +124,7 @@ if __name__ == "__main__":
         img = item.permute(1, 2, 0).cpu().numpy().astype(np.uint8)
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-        #cv2.imshow("image", pp.adjust_to_see(img))
-        #cv2.waitKey(0)
+        # cv2.imshow("image", pp.adjust_to_see(img))
+        # cv2.waitKey(0)
         print("Ground truth:", gt[i])
         print("Prediction :", predicts[i], "\n")

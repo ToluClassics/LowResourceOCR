@@ -68,9 +68,7 @@ def get_memory(model, imgs):
 
 
 if __name__ == "__main__":
-    image_path = (
-        "raw_data/trdg/igbo_image/A_ga-akpụkpọ_ụnọ_anyị_ochiịe_echi_anụ_oghighe_fụ_afụfụ_iru_ifele_nọkwalụ_1344.jpg"
-    )
+    image_path = "raw_data/trdg/igbo_image/A_ga-akpụkpọ_ụnọ_anyị_ochiịe_echi_anụ_oghighe_fụ_afụfụ_iru_ifele_nọkwalụ_1344.jpg"
     img = pp.preprocess(image_path, input_size=(1024, 128, 1))
 
     # making image compatible with resnet
@@ -78,7 +76,9 @@ if __name__ == "__main__":
     x_test = pp.normalization(img)
 
     charset = config[f"{args.lang}_charset"]
-    tokenizer = Tokenizer(charset, lang=args.lang, max_text_length=config[f'{args.lang}_max_text_len'])
+    tokenizer = Tokenizer(
+        charset, lang=args.lang, max_text_length=config[f"{args.lang}_max_text_len"]
+    )
 
     print("[INFO] Load pretrained model")
     model = make_model(hidden_dim=512, vocab_len=tokenizer.vocab_size)

@@ -420,7 +420,7 @@ def generate_charset(corpus: str):
 
 
 if __name__ == "__main__":
-    text = 'arụ_lue_atụtụ_ụdala_Selina_beraba_akwa_nne_anarọ_ya_ntị_ọghighe_oobo_ife'
+    text = "arụ_lue_atụtụ_ụdala_Selina_beraba_akwa_nne_anarọ_ya_ntị_ọghighe_oobo_ife"
     text = text.replace("_", " ")
     text = text_standardize(text)
     print(text)
