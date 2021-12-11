@@ -8,7 +8,7 @@
 #SBATCH --account=def-kshook
 #SBATCH --cpus-per-task=8
 
-#SBATCH -o ./output_test.log
+#SBATCH -o ./output_trdg_english_test.log
 
 
 

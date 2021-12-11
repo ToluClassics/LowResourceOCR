@@ -37,7 +37,7 @@ class DataGenerator(Dataset):
 
         with open(os.path.join(source, f"{lang}_target.txt"), "r") as f:
             text = f.read()
-        text = text.split("\n")
+        text = text.split("\n")clear
         text = [item.split() for item in text if len(item.strip()) > 1]
         self.gt = {k[0]: " ".join(k[1:]) for k in text}
 
