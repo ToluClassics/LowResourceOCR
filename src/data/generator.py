@@ -11,7 +11,7 @@ import random
 
 import src.data.preprocess as pp
 
-#import preprocess as pp
+# import preprocess as pp
 
 import os
 import numpy as np
@@ -23,6 +23,7 @@ from numpy import asarray
 
 class DataGenerator(Dataset):
     """Generator class with data streaming"""
+
     def __init__(self, source, charset, transform, lang, max_len=200):
         self.transform = transform
 
@@ -37,11 +38,13 @@ class DataGenerator(Dataset):
 
         with open(os.path.join(source, f"{lang}_target.txt"), "r") as f:
             text = f.read()
-        text = text.split("\n")clear
+        text = text.split("\n")
         text = [item.split() for item in text if len(item.strip()) > 1]
         self.gt = {k[0]: " ".join(k[1:]) for k in text}
 
-        self.max_len = max_len #max([len(item.strip()) for item in list(self.gt.values())])
+        self.max_len = (
+            max_len  # max([len(item.strip()) for item in list(self.gt.values())])
+        )
         self.tokenizer = Tokenizer(charset, self.max_len, lang=lang)
 
         self.size = len(self.images)
@@ -51,8 +54,8 @@ class DataGenerator(Dataset):
         img = os.path.join(self.source, img)
 
         img = pp.preprocess(img, (1024, 128, 1))
-        #cv2.imshow("image", img)
-        #cv2.waitKey(0)
+        # cv2.imshow("image", img)
+        # cv2.waitKey(0)
         # making image compatible with resnet
         img = np.repeat(img[..., np.newaxis], 3, -1)
         img = pp.normalization(img)
@@ -91,16 +94,14 @@ class Tokenizer:
 
     def encode(self, text):
         """Encode text to vector"""
-        if self.lang == 'eng':
+        if self.lang == "eng":
             text = (
                 unicodedata.normalize("NFKD", text)
                 .encode("ASCII", "ignore")
                 .decode("ASCII")
             )
         else:
-            text = (
-                unicodedata.normalize("NFC", text)
-            )
+            text = unicodedata.normalize("NFC", text)
 
         text = " ".join(text.split())
 
@@ -132,10 +133,13 @@ class Tokenizer:
 
 
 if __name__ == "__main__":
-    charset = "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~̣ṄṅẁỊịỌọỤụ "
+    charset = "!\"#$%&'()*+,-.0123456789:;=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz©ÀÁÅÈÉÌÍÒÓÙÚàáèéëìíòóôõöùúüćėŃńōšǸǹʻˈː̣̀́ṢṣẸẹịỌọ​‎–—‘’“”…←−▪► "
     split = "train"
     transform = T.Compose([T.ToTensor()])
-    dg = DataGenerator("raw_data/trdg", charset, transform, lang='igbo')
-    train_loader = torch.utils.data.DataLoader(dg, batch_size=32, shuffle=False, num_workers=2)
+    dg = DataGenerator("raw_data/trdg", charset, transform, lang="yor")
+    train_loader = torch.utils.data.DataLoader(
+        dg, batch_size=32, shuffle=False, num_workers=2
+    )
     for i, (a, b) in enumerate(train_loader):
-        print(i)
+        print(b)
+        break
