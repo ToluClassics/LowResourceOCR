@@ -1,0 +1,40 @@
+[INFO] Language to train OCR for is yor
+[INFO] Model Parameters are : {'batch_size': 32, 'eng_charset': '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&\'"()*+,-./:;<=>?@[]^_`{|}~\\ ', 'yor_charset': '!"#$%&\'()*+,-.0123456789:;=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz©ÀÁÅÈÉÌÍÒÓÙÚàáèéëìíòóôõöùúüćėŃńōšǸǹʻˈː̣̀́ṢṣẸẹịỌọ\u200b\u200e–—‘’“”…←−▪► ', 'igbo_charset': '!"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~̣ṄṅẁỊịỌọỤụ ', 'target_path': 'run/checkpoint_weights_lang_trdg.pt', 'source': 'raw_data/trdg', 'lr': 1e-05, 'num_epochs': 1000, 'eng_max_text_len': 128, 'igbo_max_text_len': 200, 'yor_max_text_len': 150}
+[INFO] Model Parameters are : {'batch_size': 32, 'eng_charset': '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&\'"()*+,-./:;<=>?@[]^_`{|}~\\ ', 'yor_charset': '!"#$%&\'()*+,-.0123456789:;=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz©ÀÁÅÈÉÌÍÒÓÙÚàáèéëìíòóôõöùúüćėŃńōšǸǹʻˈː̣̀́ṢṣẸẹịỌọ\u200b\u200e–—‘’“”…←−▪► ', 'igbo_charset': '!"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~̣ṄṅẁỊịỌọỤụ ', 'target_path': 'run/checkpoint_weights_yor_trdg.pt', 'source': 'raw_data/trdg', 'lr': 1e-05, 'num_epochs': 1000, 'eng_max_text_len': 128, 'igbo_max_text_len': 200, 'yor_max_text_len': 150}
+[INFO] Generating Dataset Loader
+[INFO] Length of training dataset is 2253
+[INFO] Length of validation dataset is 251
+[INFO] Load pretrained model
+[INFO] Training Begin ......
+Epoch: 01 learning rate[1e-05]
+/lustre07/scratch/odunayo/multilingual-ocr/venv/lib/python3.7/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Traceback (most recent call last):
+  File "main.py", line 134, in <module>
+    main()
+  File "main.py", line 110, in main
+    model, criterion, optimizer, scheduler, train_loader, tokenizer
+  File "/lustre07/scratch/odunayo/multilingual-ocr/trainer.py", line 36, in train
+    for batch, (imgs, labels_y,) in enumerate(dataloader):
+  File "/lustre07/scratch/odunayo/multilingual-ocr/venv/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 521, in __next__
+    data = self._next_data()
+  File "/lustre07/scratch/odunayo/multilingual-ocr/venv/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 1183, in _next_data
+    return self._process_data(data)
+  File "/lustre07/scratch/odunayo/multilingual-ocr/venv/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 1229, in _process_data
+    data.reraise()
+  File "/lustre07/scratch/odunayo/multilingual-ocr/venv/lib/python3.7/site-packages/torch/_utils.py", line 434, in reraise
+    raise exception
+KeyError: Caught KeyError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/lustre07/scratch/odunayo/multilingual-ocr/venv/lib/python3.7/site-packages/torch/utils/data/_utils/worker.py", line 287, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/lustre07/scratch/odunayo/multilingual-ocr/venv/lib/python3.7/site-packages/torch/utils/data/_utils/fetch.py", line 49, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/lustre07/scratch/odunayo/multilingual-ocr/venv/lib/python3.7/site-packages/torch/utils/data/_utils/fetch.py", line 49, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/lustre07/scratch/odunayo/multilingual-ocr/venv/lib/python3.7/site-packages/torch/utils/data/dataset.py", line 363, in __getitem__
+    return self.dataset[self.indices[idx]]
+  File "/lustre07/scratch/odunayo/multilingual-ocr/src/data/generator.py", line 66, in __getitem__
+    self.gt[self.images[i]] = pp.text_standardize(self.gt[self.images[i]])
+KeyError: 'Àwọn_Gómìnà_Ìpínlẹ̀_Sókótó\u200e_(olófo)_1583.jpg'
+
