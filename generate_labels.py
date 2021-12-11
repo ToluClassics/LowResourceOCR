@@ -41,9 +41,9 @@ with open(path.join(BASE_DIR, f"{args.lang}_target.txt"), mode="r") as f:
             if ccar in set(label):
                 try:
                     text.remove(label)
-                    # os.remove(
-                    #     BASE_DIR + "/" + f"{args.lang}_image" + "/" + label.split()[0]
-                    # )
+                    os.remove(
+                        BASE_DIR + "/" + f"{args.lang}_image" + "/" + label.split()[0]
+                    )
                 except:
                     pass
 
