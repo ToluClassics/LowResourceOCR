@@ -70,7 +70,7 @@ val_loader = torch.utils.data.DataLoader(
 
 print(f"[INFO] Load pretrained model")
 
-model = make_model(vocab_len=99)
+model = make_model(vocab_len=108)
 model.load_state_dict(
     torch.load("run/checkpoint_weights_eng_trdg.pt", map_location=device)
 )
