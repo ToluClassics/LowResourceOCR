@@ -24,7 +24,7 @@ from numpy import asarray
 class DataGenerator(Dataset):
     """Generator class with data streaming"""
 
-    def __init__(self, source, charset, transform, lang, max_len=200):
+    def __init__(self, source, charset, transform, lang, max_len=300):
         self.transform = transform
 
         self.source = os.path.join(source, f"{lang}_image")
@@ -67,6 +67,8 @@ class DataGenerator(Dataset):
         y_train = self.tokenizer.encode(self.gt[self.images[i]])
 
         # padding till max length
+        if self.tokenizer.maxlen - len(y_train):
+            print(self.gt[self.images[i]])
         y_train = np.pad(y_train, (0, self.tokenizer.maxlen - len(y_train)))
 
         gt = torch.Tensor(y_train)
@@ -141,5 +143,4 @@ if __name__ == "__main__":
         dg, batch_size=32, shuffle=False, num_workers=2
     )
     for i, (a, b) in enumerate(train_loader):
-        print(b)
-        break
+        pass

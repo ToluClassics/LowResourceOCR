@@ -15,15 +15,19 @@ parser.add_argument(
 args = parser.parse_args()
 
 
-# with open(path.join(BASE_DIR, f"{args.lang}_target.txt"), mode="w") as f:
-#     for file in os.listdir(path.join(BASE_DIR, f"{args.lang}_image")):
-#         new_file = file.replace(" ", "_")
-#         print(new_file)
-#         os.rename(
-#             path.join(BASE_DIR, f"{args.lang}_image", file),
-#             path.join(BASE_DIR, f"{args.lang}_image", new_file),
-#         )
-#         f.write(new_file + " " + file.replace(".jpg", "").split("_")[0] + "\n")
+with open(path.join(BASE_DIR, f"{args.lang}_target.txt"), mode="w") as f:
+    for file in os.listdir(path.join(BASE_DIR, f"{args.lang}_image")):
+        new_file = file.replace(" ", "_")
+        print(new_file)
+        # print(" ".join(file.replace(".jpg", "").split("_")[:-1]))
+        # break
+        # os.rename(
+        #     path.join(BASE_DIR, f"{args.lang}_image", file),
+        #     path.join(BASE_DIR, f"{args.lang}_image", new_file),
+        # )
+        f.write(
+            new_file + " " + " ".join(file.replace(".jpg", "").split("_")[:-1]) + "\n"
+        )
 
 # with open(path.join(BASE_DIR, f"{args.lang}_target.txt"), mode="r") as f:
 #     text = f.read()
@@ -56,10 +60,10 @@ args = parser.parse_args()
 #     print(len(text_new))
 #     print(len(text))
 
-for file in os.listdir("raw_data/trdg/yor_image"):
-    if "\u200b" in file:
-        print(file)
-        os.rename(
-            os.path.join("raw_data/trdg/yor_image", file),
-            os.path.join("raw_data/trdg/yor_image", file.replace("\u200b", "")),
-        )
+# for file in os.listdir("raw_data/trdg/yor_image"):
+#     if "\u200b" in file:
+#         print(file)
+#         os.rename(
+#             os.path.join("raw_data/trdg/yor_image", file),
+#             os.path.join("raw_data/trdg/yor_image", file.replace("\u200b", "")),
+#         )
