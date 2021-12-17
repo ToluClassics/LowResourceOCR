@@ -88,7 +88,7 @@ def test(model, test_loader, max_text_length):
             predicts.append(tokenizer.decode(out_indexes))
             gt.append(tokenizer.decode(trg.flatten(0, 1)))
 
-            if k == 10:
+            if k == 200:
                 break
     return predicts, gt, imgs
 
