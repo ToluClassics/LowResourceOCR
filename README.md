@@ -19,8 +19,9 @@ This work is an adaptation of CNN+Transformer architecture to training text reco
     $ (venv) pip install -r requirements.txt
     ```
 - Download TextRecognition Model from google drive
-    - Igbo : Download link
-    - Yorùbá : Download link
+    - Igbo : [Download link](https://drive.google.com/file/d/14YujZltsPMIkxnikq9ZdfQwc72aNX5dN/view?usp=sharing)
+    - Yorùbá : [Download link](https://drive.google.com/file/d/17KnBn1cwH4scDaC36-lCZ-t1bHwmWCL3/view?usp=sharing)
+    - English : [Download link](https://drive.google.com/file/d/17KnBn1cwH4scDaC36-lCZ-t1bHwmWCL3/view?usp=sharing)
 
 - Run Inference:
 
