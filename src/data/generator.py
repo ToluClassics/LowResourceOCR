@@ -67,8 +67,6 @@ class DataGenerator(Dataset):
         y_train = self.tokenizer.encode(self.gt[self.images[i]])
 
         # padding till max length
-        if self.tokenizer.maxlen - len(y_train):
-            print(self.gt[self.images[i]])
         y_train = np.pad(y_train, (0, self.tokenizer.maxlen - len(y_train)))
 
         gt = torch.Tensor(y_train)
@@ -140,7 +138,7 @@ if __name__ == "__main__":
     transform = T.Compose([T.ToTensor()])
     dg = DataGenerator("raw_data/trdg", charset, transform, lang="yor")
     train_loader = torch.utils.data.DataLoader(
-        dg, batch_size=32, shuffle=False, num_workers=2
+        dg, batch_size=16, shuffle=False, num_workers=2
     )
     for i, (a, b) in enumerate(train_loader):
         pass
