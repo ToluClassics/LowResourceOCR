@@ -88,7 +88,7 @@ def test(model, test_loader, max_text_length):
             predicts.append(tokenizer.decode(out_indexes))
             gt.append(tokenizer.decode(trg.flatten(0, 1)))
 
-            if k == 200:
+            if k == 1:
                 break
     return predicts, gt, imgs
 
@@ -123,6 +123,7 @@ if __name__ == "__main__":
         print("=" * 100, "\n")
         img = item.permute(1, 2, 0).cpu().numpy().astype(np.uint8)
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        print(img.shape)
 
         # cv2.imshow("image", pp.adjust_to_see(img))
         # cv2.waitKey(0)

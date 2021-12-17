@@ -24,19 +24,27 @@ with open("config.yaml", "r") as f:
     config = yaml.safe_load(f)
 
 
-def single_image_inference(model, img, tokenizer, transform, device):
+def single_image_inference(
+    model,
+    img,
+    tokenizer,
+    transform,
+    device,
+    max_text_length=config[f"{args.lang}_max_text_len"],
+):
     """
     Run inference on single image
     """
     img = transform(img)
     imgs = img.unsqueeze(0).float().to(device)
+    model.eval()
     with torch.no_grad():
         memory = get_memory(model, imgs)
         out_indexes = [
             tokenizer.chars.index("SOS"),
         ]
 
-        for i in range(128):
+        for i in range(max_text_length):
             mask = model.generate_square_subsequent_mask(i + 1).to(device)
             trg_tensor = torch.LongTensor(out_indexes).unsqueeze(1).to(device)
             output = model.vocab(
@@ -50,7 +58,7 @@ def single_image_inference(model, img, tokenizer, transform, device):
 
             out_indexes.append(out_token)
 
-    pre = tokenizer.decode(out_indexes[1:])
+        pre = tokenizer.decode(out_indexes[1:])
     return pre
 
 
@@ -90,6 +98,14 @@ def main():
     model.load_state_dict(torch.load(args.checkpoint_path, map_location=device))
 
     transform = T.Compose([T.ToTensor()])
+
+    # imx = transform(x_test)
+    # imx = imx.permute(1, 2, 0).cpu().numpy().astype(np.uint8)
+    # imx = cv2.cvtColor(imx, cv2.COLOR_BGR2GRAY)
+
+    # cv2.imshow("image", pp.adjust_to_see(imx))
+    # cv2.waitKey(0)
+
     prediction = single_image_inference(model, x_test, tokenizer, transform, device)
     print("predicted text is: {}".format(prediction))
 
