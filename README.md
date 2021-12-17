@@ -24,18 +24,18 @@ This work is an adaptation of CNN+Transformer architecture to training text reco
 
 - Run Inference:
 
-    ![alt text](samples/igbo_sample.jpg)
+    ![alt text](samples/yor_sample.jpg)
 
     ```
-    python3 inference.py --lang igbo 
-        --image_path samples/igbo_sample.jpg 
+    python3 inference.py --lang yor 
+        --image_path samples/yor_sample.jpg 
         --checkpoint_path run/checkpoint_weights_igbo_trdg.pt
     ```
-    ### Output
+    #### Output
 
     ```
     [INFO] Load pretrained model
-    [INFO] Predicted text is: tụ n'anya alo afọ ụsụsụ gụzụ aka igụ
+    [INFO] Predicted text is: Àwọn Ohun Tó Wà
     ```
 
 ## Reference::
