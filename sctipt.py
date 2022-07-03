@@ -16,15 +16,6 @@ from transformers import TrOCRProcessor, VisionEncoderDecoderModel, AdamW
 
 from datasets import load_metric
 
-"""
-features we may want to pass as arguments include:
-text_path, 
-ImageFolder_Path, 
-split_size, 
-max_target_length, 
-no_epochs,
-train_batch_size
-"""
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -81,7 +72,11 @@ def get_parser() -> argparse.ArgumentParser:
                           default=4)
     parser.add_argument('--vocab_size',
                           type-int,
-                          help='model config vocab size')                             
+                          help='model config vocab size')
+    parser.add_argument('--model_savepath',
+                       type=str,
+                       help='path to save model to',
+                       default='.')                             
     return parser
 
 
@@ -224,5 +219,5 @@ for epoch in range(10):  # loop over the dataset multiple times
 
    print("Validation CER:", valid_cer / len(eval_dataloader))
 
-model.save_pretrained(".")
+model.save_pretrained(args.model_savepath)
 
