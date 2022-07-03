@@ -1,10 +1,6 @@
 #! /usr/bin/env python
 
-# !git clone https://github.com/ToluClassics/LowResourceOCR.git 
-
-
-# !pip install -q transformers
-# !pip install -q datasets jiwer
+import random
 import os, argparse
 import sys
 import pandas as pd
@@ -32,51 +28,75 @@ train_batch_size
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# Create the parser
-the_parser = argparse.ArgumentParser(description='List the content of a folder')
-
-# Add the arguments
-the_parser.add_argument('--text_path',
+def get_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        description="Takes configuration for Transformer OCR training"
+    )
+    parser.add_argument('--text_path',
                        metavar='path',
                        type=str,
                        help='the path to dataframe .txt file')
-the_parser.add_argument('--dir_path',
-                       metavar='dpath',
-                       type=str,
-                       help='the path to dataframe .txt file')
-the_parser.add_argument('--split_size',
-                       type=float,
-                       help='train_test split size for validation',
-                       default=0.2)
-the_parser.add_argument('--max_target_length',
-                       type=int,
-                       help='train_test split size for validation',
-                       default=256)
-the_parser.add_argument('--no_epochs',
-                       type=int,
-                       help='no of epochs in training',
-                       default=10)
-the_parser.add_argument('--training_batch_size',
-                       type=int,
-                       help='training batch size',
-                       default=4)
+    parser.add_argument('--dir_path',
+                          metavar='dpath',
+                          type=str,
+                          help='the path to dataframe .txt file')
+    parser.add_argument('--split_size',
+                          type=float,
+                          help='train_test split size for validation',
+                          default=0.2)
+    parser.add_argument('--max_target_length',
+                          type=int,
+                          help='train_test split size for validation',
+                          default=256)
+    parser.add_argument('--no_epochs',
+                          type=int,
+                          help='no of epochs in training',
+                          default=10)
+    parser.add_argument('--training_batch_size',
+                          type=int,
+                          help='training batch size',
+                          default=4)
+    parser.add_argument('--learning_rate',
+                          help='Set Optimizer learning rate, default is',
+                          default=5e-5)
+    parser.add_argument('--max_length',
+                          type=int,
+                          help='max length',
+                          default=64)                    
+    parser.add_argument('--early_stopping',
+                          type=bool,
+                          help='To activate early stopping or not',
+                          default=True)
+    parser.add_argument('--no_repeat_ngram_size',
+                          type=int,
+                          help='Number of repeat ngram size',
+                          default=3)
+    parser.add_argument('--length_penalty',
+                          type=float,
+                          help='model config length penalty',
+                          default=2.0)    
+    parser.add_argument('--num_beams',
+                          type=int,
+                          help='model config number of beams',
+                          default=4)
+    parser.add_argument('--vocab_size',
+                          type-int,
+                          help='model config vocab size')                             
+    return parser
 
-# Execute parse_args()
-args = the_parser.parse_args()
 
-txt_path = args.text_path
-dir_path = args.dir_path
-split_size = args.split_size
-max_target_length = args.max_target_length
-no_epochs = args.no_epochs
-train_batch_size = args.training_batch_size
+# Create the parser
+parser = get_parser()
+args = parser.parse_args()
+random.seed(args.seed)
+                       
 
-if not os.path.isdir(txt_path):
+if not os.path.isdir(args.text_path):
     print('The file specified does not exist')
     sys.exit()
 
 
-df = pd.read_fwf(txt_path, header=None)
+df = pd.read_fwf(args.text_path, header=None)
 
 df['filename']= df[0].str.split(' ').str[0]
 df[2] = df['filename']
@@ -89,13 +109,13 @@ df.drop(columns=0, inplace=True)
 
 df.rename(columns={0: "filename", 2: "text"}, inplace=True)
 
-train_df, test_df = train_test_split(df, test_size=0.2)
+train_df, test_df = train_test_split(df, test_size=args.split_size)
 # we reset the indices to start from zero
 train_df.reset_index(drop=True, inplace=True)
 test_df.reset_index(drop=True, inplace=True)
 
 class IAMDataset(Dataset):
-    def __init__(self, root_dir, df, processor, max_target_length=256):
+    def __init__(self, root_dir, df, processor, max_target_length):
         self.root_dir = root_dir
         self.df = df
         self.processor = processor
@@ -122,12 +142,14 @@ class IAMDataset(Dataset):
         return encoding
 
 processor = TrOCRProcessor.from_pretrained("microsoft/trocr-base-handwritten")
-train_dataset = IAMDataset(root_dir=dir_path,
+train_dataset = IAMDataset(root_dir=args.dir_path,
                            df=train_df,
-                           processor=processor)
-eval_dataset = IAMDataset(root_dir=dir_path,
+                           processor=processor,
+                           max_target_length=args.max_target_length)
+eval_dataset = IAMDataset(root_dir=args.dir_path,
                            df=test_df,
-                           processor=processor)
+                           processor=processor,
+                           max_target_length=args.max_target_length)
 encoding = train_dataset[0]
 
 image = Image.open(train_dataset.root_dir + train_df['filename'][0]).convert("RGB")
@@ -136,8 +158,8 @@ labels = encoding['labels']
 labels[labels == -100] = processor.tokenizer.pad_token_id
 label_str = processor.decode(labels, skip_special_tokens=True)
 
-train_dataloader = DataLoader(train_dataset, batch_size=train_batch_size, shuffle=True)
-eval_dataloader = DataLoader(eval_dataset, batch_size=train_batch_size)
+train_dataloader = DataLoader(train_dataset, batch_size=args.training_batch_size, shuffle=True)
+eval_dataloader = DataLoader(eval_dataset, batch_size=args.training_batch_size)
 
 model = VisionEncoderDecoderModel.from_pretrained("microsoft/trocr-base-stage1")
 model.to(device)
