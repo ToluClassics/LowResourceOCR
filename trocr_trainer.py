@@ -3,6 +3,7 @@
 import random
 import os, argparse
 import sys
+import copy
 import pandas as pd
 from datasets import load_metric
 from sklearn.model_selection import train_test_split
@@ -16,6 +17,8 @@ from tqdm import tqdm
 
 cer_metric = load_metric("cer")
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+data_path = "raw_data/trdg/eng_image"
 
 class OcrDataset(Dataset):
     def __init__(self, root_dir, df, processor, max_target_length):
@@ -60,7 +63,7 @@ def get_parser() -> argparse.ArgumentParser:
     parser.add_argument('--model_name',
                           metavar='model_name',
                           type=str,
-                          default="microsoft/trocr-base-stage1")
+                          default="microsoft/trocr-base-printed")
     parser.add_argument('--processor_tokenizer',
                           metavar='processor_tokenizer',
                           type=str,
@@ -139,6 +142,15 @@ def gen_training_dataframe(file_path: str):
 
     return df
 
+def process_image(image, processor, model):
+    # prepare image
+    pixel_values = processor(image, return_tensors="pt").pixel_values.to(device)
+    # generate (no beam search)
+    generated_ids = model.generate(pixel_values)
+    # decode
+    generated_text = processor.batch_decode(generated_ids, skip_special_tokens=True)[0]
+    return generated_text
+
 
 def main():
 
@@ -156,7 +168,7 @@ def main():
     train_df.reset_index(drop=True, inplace=True)
     test_df.reset_index(drop=True, inplace=True)
 
-    processor = TrOCRProcessor.from_pretrained(args.model_name, tokenizer=args.processor_tokenizer)
+    processor = TrOCRProcessor.from_pretrained(args.model_name)
     train_dataset = OcrDataset(root_dir=args.dir_path,
                             df=train_df,
                             processor=processor,
@@ -201,7 +213,7 @@ def main():
         train_loss = 0.0
         for batch in tqdm(train_dataloader):
             # get the inputs
-            for k,v in batch.items():
+            for k, v in batch.items():
                 batch[k] = v.to(device)
 
             # forward + backward + optimize
@@ -228,7 +240,21 @@ def main():
 
         print("Validation CER:", valid_cer / len(eval_dataloader))
 
-    model.save_pretrained(args.model_savepath)
+        #predict during training
+        with torch.no_grad():
+            sampled_files = os.listdir(data_path)
+            random.shuffle(sampled_files)
+            for i, file in enumerate(sampled_files):
+                test_image = Image.open(os.path.join(data_path, file)).convert("RGB")
+                generated_text = process_image(test_image, processor, model)
+                print(f"[Predict While Training-> Generated Text] :: {generated_text}")
+                print(f"[Predict While Training-> Groundtruth Text] :: {' '.join(file.split('_')[:-1]).upper()}")
+                print("==============================================================================================\n")
+
+                if i > 5:
+                    break
+
+    model.save_pretrained(args.model_outputdir)
 
 
 
