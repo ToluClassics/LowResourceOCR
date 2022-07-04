@@ -1,6 +1,6 @@
 text_path=raw_data/trdg/eng_target.txt
 dir_path=raw_data/trdg/eng_image/
-model_name=microsoft/trocr-base-stage1
+model_name=microsoft/trocr-base-printed
 split_size=0.2
 max_target_length=256
 no_epochs=10
