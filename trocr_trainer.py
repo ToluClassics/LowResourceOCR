@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 
 import random
+import wandb
 import os, argparse
 import sys
 import copy
@@ -15,6 +16,8 @@ from torch.utils.data import Dataset, DataLoader
 from PIL import Image
 from tqdm import tqdm
 
+
+wandb.init(project="LowResourceOCR", entity="toluclassics")
 cer_metric = load_metric("cer")
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -179,7 +182,18 @@ def main():
                             max_target_length=args.max_target_length)
     encoding = train_dataset[0]
 
-    #image = Image.open(train_dataset.root_dir + train_df['filename'][0]).convert("RGB")
+    wandb.config = {
+            "learning_rate": args.learning_rate,
+            "epochs": args.no_epochs,
+            "batch_size": args.training_batch_size,
+            "processor_tokenizer": args.processor_tokenizer,
+            "num_beams": args.num_beams,
+            "text_path": args.text_path,
+            "model_name": args.model_name,
+            "early_stopping": args.early_stopping,
+            "no_repeat_ngram_size": args.no_repeat_ngram_size,
+            "seed": args.seed,
+            }
 
     labels = encoding['labels']
     labels[labels == -100] = processor.tokenizer.pad_token_id
@@ -206,6 +220,7 @@ def main():
     model.config.num_beams = args.num_beams
 
     optimizer = AdamW(model.parameters(), lr=args.learning_rate)
+    text_table = wandb.Table(columns=["epoch", "original_label", "generated_label"])
 
     for epoch in range(args.no_epochs):  # loop over the dataset multiple times
         # train
@@ -239,6 +254,9 @@ def main():
                 valid_cer += cer 
 
         print("Validation CER:", valid_cer / len(eval_dataloader))
+        
+        wandb.log({"loss": loss, "epoch": epoch, "validation_character_error_rate": valid_cer / len(eval_dataloader) })
+
 
         #predict during training
         with torch.no_grad():
@@ -251,10 +269,15 @@ def main():
                 print(f"[Predict While Training-> Groundtruth Text] :: {' '.join(file.split('_')[:-1]).upper()}")
                 print("==============================================================================================\n")
 
+                text_table.add_data(epoch, ' '.join(file.split('_')[:-1]).lower(), generated_text.lower())
+
                 if i > 5:
                     break
+            wandb.log({"generated_text" : text_table})
+
 
     model.save_pretrained(args.model_outputdir)
+    wandb.log_artifact(args.model_outputdir, name=args.model_outputdir, type=args.model_name) 
 
 
 

@@ -7,13 +7,13 @@ no_epochs=10
 training_batch_size=16
 learning_rate=5e-5
 max_length=64
-processor_tokenizer=None
+processor_tokenizer=castorini/afriberta_base
 num_beams=5
-model_outputdir=logs/${model_name}
+model_outputdir=logs/${model_name}_afriberta
 no_repeat_ngram_size=3
 length_penalty=2.0
 
-CUDA_VISIBLE_DEVICE=6 python trocr_trainer.py --text_path ${text_path} \
+CUDA_VISIBLE_DEVICE=7 python trocr_trainer.py --text_path ${text_path} \
     --dir_path ${dir_path} \
     --model_name ${model_name} \
     --split_size ${split_size} \
