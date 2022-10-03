@@ -12,7 +12,7 @@ fsspec==2022.5.0
 huggingface-hub==0.8.1
 idna==3.3
 jiwer==2.3.0
-joblib==1.1.0
+joblib==1.2.0
 multidict==6.0.2
 multiprocess==0.70.13
 numpy==1.23.0
