@@ -68,7 +68,7 @@ val_loader = torch.utils.data.DataLoader(
     val_dataset, batch_size=config["batch_size"], shuffle=True, num_workers=2
 )
 
-print(f"[INFO] Load pretrained model")
+print(f"[INFO] Load pretrained model...")
 
 model = make_model(vocab_len=108)
 model.load_state_dict(
